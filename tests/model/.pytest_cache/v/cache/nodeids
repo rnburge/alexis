@@ -1,0 +1,9 @@
+[
+  "test_rack.py::test_create_rack",
+  "test_rack.py::test_rack_size",
+  "test_rack.py::test_add_too_many_tiles",
+  "test_rack.py::test_get_a_tile_in_rack",
+  "test_rack.py::test_overflow_rack",
+  "test_rack.py::test_contents",
+  "test_rack.py::test_replenish"
+]

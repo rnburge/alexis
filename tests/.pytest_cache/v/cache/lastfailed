@@ -1,0 +1,21 @@
+{
+  "controller/test_game.py": true,
+  "model/test_aiplayer.py": true,
+  "model/test_bag.py::test_add_tiles": true,
+  "model/test_bag.py::test_fill": true,
+  "model/test_bag.py::test_get_tiles": true,
+  "model/test_bag.py::test_init": true,
+  "model/test_bag.py::test_remaining_tiles": true,
+  "model/test_bag.py::test_str": true,
+  "model/test_move.py": true,
+  "model/test_movevalidator.py": true,
+  "model/test_rack.py::test_add_too_many_tiles": true,
+  "model/test_rack.py::test_contents": true,
+  "model/test_rack.py::test_create_rack": true,
+  "model/test_rack.py::test_get_a_tile_in_rack": true,
+  "model/test_rack.py::test_overflow_rack": true,
+  "model/test_rack.py::test_rack_size": true,
+  "model/test_rack.py::test_replenish": true,
+  "model/test_tile.py": true,
+  "view/test_consolegui.py": true
+}

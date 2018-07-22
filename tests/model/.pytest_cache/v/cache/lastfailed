@@ -1,0 +1,6 @@
+{
+  "test_aiplayer.py": true,
+  "test_move.py": true,
+  "test_movevalidator.py": true,
+  "test_tile.py": true
+}
