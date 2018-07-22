@@ -79,6 +79,13 @@ class Row:
 
         self.column_cross_scores[squares_to_update] = np.sum(self.existing_letter_scores[self.squares_in_word(index)])
 
+    def place_tiles(self, played_squares, tiles):
+        tile_ordinals = [(ord(t)-64) for t in tiles]
+        np.put(self.existing_letters, played_squares, tile_ordinals)
+
+    def remove_tiles(self, played_squares):
+        self.existing_letters[played_squares] = 0
+
     def __str__(self):
         # DEBUG:
         return self.debug_row_string()  # DEBUG
@@ -114,7 +121,6 @@ class Row:
             letters = [chr(x + 64) for x in self.existing_letters]
             row = ''.join(np.where(self.existing_letters > 0, letters, list(row)))
         return row_num + ' ' + ' '.join(row)
-
 
     def debug_row_string(self):
         row_num = '  '

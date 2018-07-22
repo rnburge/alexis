@@ -1,5 +1,7 @@
 from model.config import Direction
 from model.row import Row
+import numpy as np
+from model.config import LETTER_VALUES, NO_CROSS_WORD, RACK_SIZE, BONUS
 
 
 class Move:
@@ -54,3 +56,27 @@ class Move:
         letters = ''.join([str(t) for t in self.tiles])
         word = self.row.word_at(self.start_index)
         return "Move: " + chr(64+col) + str(row) + ", " + str(self.direction) + ", tiles: " + letters + ", forms word: " + word + ", score: " + str(self.score)
+
+    def calculate_score(self):
+        tile_values = [LETTER_VALUES[(ord(t)-64)] for t in self.tiles]
+        squares_in_whole_word = self.row.squares_in_word(self.start_index)
+
+        # store score of new tiles on board:
+        np.put(self.row.existing_letter_scores, self.played_squares, tile_values)
+
+        # add to running total, including letter multipliers
+        self.score += np.sum((self.row.existing_letter_scores * self.row.letter_multiplier)[squares_in_whole_word])
+        # multiply whole thing by cumulative word multipliers of played squares:
+        self.score *= np.prod(self.row.word_multiplier[self.played_squares])
+        # add scores of cross-words
+        self.score += np.sum(np.where(
+            self.self.row.running_scores != NO_CROSS_WORD,
+            ((self.row.existing_letter_scores * self.row.letter_multiplier + self.row.running_scores) * self.row.word_multiplier),
+            np.zeros(17))[self.played_squares])
+        # add bonus if we played a full rack of tiles
+        if len(self.played_squares) == RACK_SIZE:
+            self.score += BONUS
+
+        # change multipliers for played squares to the identity for multiplication so they aren't re-used:
+        self.row.letter_multipliers[self.played_squares] = 1
+        self.row.word_multipliers[self.played_squares] = 1

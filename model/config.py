@@ -32,6 +32,8 @@ BOARD_SIZE = 16
 # number of tiles in a full rack
 RACK_SIZE = 7
 
+# dummy value indicating no running total of cross-word exists yet:
+NO_CROSS_WORD = -1
 
 class Direction(Enum):
     NOT_APPLICABLE = -1

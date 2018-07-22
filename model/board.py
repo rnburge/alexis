@@ -1,5 +1,5 @@
 import numpy as np
-from model.config import Direction, BOARD_SIZE
+from model.config import Direction, BOARD_SIZE, NO_CROSS_WORD
 from model.row import Row
 from util.bit_twiddling import *
 
@@ -128,7 +128,10 @@ class GameBoard:
 
         # Array representing current total score of other squares
         # in this word that are in same column when playing across a row
-        self.row_cross_scores = np.zeros([17, 17], dtype='int32')
+        # (no score registered is indicated as '-1' since there is no
+        # 'None' in numpy integer arrays, and zero could be a legitimate
+        # score for a played blank
+        self.row_cross_scores = np.full([17, 17], NO_CROSS_WORD, dtype='int32')
 
         # Array representing letters blocked from play
         # when playing down a column, due to this forming an invalid
