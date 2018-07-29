@@ -13,10 +13,10 @@ def main(args=None):
     bag = Bag()
     game = GameController(players, bag)
     gui = ConsoleGui(game)
-    #player1 = AiPlayer(game, gui, "AI Player 1")
-    #player2 = AiPlayer(game, gui, "AI Player 2")
-    player1 = HumanPlayer(bag, gui, "Player 1")
-    player2 = HumanPlayer(bag, gui, "Player 2")
+    player1 = AiPlayer(game, gui, "AI Player 1")
+    player2 = AiPlayer(game, gui, "AI Player 2")
+    #player1 = HumanPlayer(bag, gui, "Player 1")
+    #player2 = HumanPlayer(bag, gui, "Player 2")
     game.players = [player1, player2]
     game.start_game()
 

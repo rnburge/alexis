@@ -33,8 +33,8 @@ class ConsoleGui(View):
                + "\n"
 
     def board_as_string(self):
-        return str(self.board) if self.game.game_state is not GameState.FIRST_MOVE else self.board.board_string_with_hooks()
-
+        return str(
+            self.board) if self.game.game_state is not GameState.FIRST_MOVE else self.board.board_string_with_hooks()
 
     def get_move(self):
         print(self.game.active_player.name + """ to move
@@ -47,12 +47,12 @@ Enter <Tiles> only to exchange, nothing to pass,
         move = None
         while move is None:
             # read user input
-            userInput = input("")
+            user_input = input("")
             # exit, if user types 'exit'
-            if userInput.upper() == "EXIT()":
+            if user_input.upper() == "EXIT()":
                 self.game.game_state = GameState.ENDED
             else:
-                move = self.parse_move_string(userInput)
+                move = self.parse_move_string(user_input)
         return move
 
     def parse_move_string(self, input_string: str):
@@ -75,8 +75,6 @@ Enter <Tiles> only to exchange, nothing to pass,
 
             raise MoveValidationError("Invalid number of tiles")
 
-        # make a list to store tiles for the move:
-        tiles_to_play = []
         # get starting square:
         x = ord(input_string[0]) - 64
         y = self.digits_in_string(input_string)
@@ -86,12 +84,10 @@ Enter <Tiles> only to exchange, nothing to pass,
 
         # get direction. This should be at index 1 now we've removed numbers:
         if input_string[1] == 'H':
-            direction = Direction.HORIZONTAL
-            row = self.board.get_row(y, Direction.HORIZONTAL, True)
+            row = self.board.get_row(y, Direction.HORIZONTAL)
             starting_square = x
         elif input_string[1] == 'V':
-            direction = Direction.VERTICAL
-            row = self.board.get_row(x, Direction.VERTICAL, True)
+            row = self.board.get_row(x, Direction.VERTICAL)
             starting_square = y
         else:
             raise MoveValidationError("Direction invalid")
@@ -148,11 +144,15 @@ Enter <Tiles> only to exchange, nothing to pass,
         print('hook_squares:               ' + str(row.hook_squares[i]))
         print('word_multiplier:            ' + str(row.word_multipliers[i]))
         print('letter_multiplier:          ' + str(row.letter_multipliers[i]))
-        print('existing_letters:           ' + ('none' if not row.existing_letters[i] else chr(64+(row.existing_letters[i]))))
+        print('existing_letters:           ' + (
+            'none' if not row.existing_letters[i] else chr(64 + (row.existing_letters[i]))))
         print('existing_letter_scores:     ' + str(row.existing_letter_scores[i]))
         print('this_row_crosschecks:       ' + str(bool_array_from_uint32(row.this_row_crosschecks[i]).astype(int)))
-        print('this_row_crosschecks:       ' + ''.join([chr(64+j) for j in range(1,27) if read_bit(row.this_row_crosschecks[i],j)]))
-        print('orthogonal_row_crosschecks: ' + str(bool_array_from_uint32(row.orthogonal_row_crosschecks[i]).astype(int)))
-        print('orthogonal_row_crosschecks: ' + ''.join([chr(64+j) for j in range(1,27) if read_bit(row.orthogonal_row_crosschecks[i],j)]))
+        print('this_row_crosschecks:       ' + ''.join(
+            [chr(64 + j) for j in range(1, 27) if read_bit(row.this_row_crosschecks[i], j)]))
+        print(
+            'orthogonal_row_crosschecks: ' + str(bool_array_from_uint32(row.orthogonal_column_crosschecks[i]).astype(int)))
+        print('orthogonal_row_crosschecks: ' + ''.join(
+            [chr(64 + j) for j in range(1, 27) if read_bit(row.orthogonal_column_crosschecks[i], j)]))
         print('this_row_cross_scores:      ' + str(row.this_row_cross_scores[i]))
-        print('column_play_scores:         ' + str(row.orthogonal_row_cross_scores[i]))
+        print('column_play_scores:         ' + str(row.orthogonal_column_cross_scores[i]))

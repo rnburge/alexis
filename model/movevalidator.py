@@ -1,10 +1,9 @@
-from model.board import GameBoard, uint32_from_bool_array
+from model.board import GameBoard
 from model.config import Direction, RACK_SIZE, BOARD_SIZE, LETTER_DISTRIBUTIONS
 from model.lexicon import Lexicon
 from model.move import Move
 from model.row import Row
-from model.tile import Tile
-from util.bit_twiddling import read_bit, set_bit, clear_bit
+from util.bit_twiddling import read_bit, clear_bit
 import numpy as np
 
 
@@ -25,9 +24,13 @@ class MoveValidator:
         :return: boolean True if move is valid, otherwise a MoveValidationError is raised
         giving the reason for the move being invalid.
         """
-        pass
+        if move.is_valid is not None:
+            return move.is_valid
+
+        move.is_valid = False
 
         if move.direction == Direction.NOT_APPLICABLE:  # we must be passing or swapping letters
+            move.is_valid = True
             return True  # Player must have passed or exchanged
 
         num_tiles = len(move.tiles)
@@ -65,6 +68,7 @@ class MoveValidator:
             raise MoveValidationError("'" + word_formed + "'is not a valid word")
 
         move.calculate_score()
+        move.is_valid = True
 
         return True
 
@@ -78,18 +82,26 @@ class MoveValidator:
         except MoveValidationError:
             return False
 
-    def crosswords_valid(self, row: Row):
+    @staticmethod
+    def crosswords_valid(row: Row):
         # ensure that for every letter now on the board in this row,
-        # the bit in valid_letters for that particular letter is not set to False
-        # (slice removes sentinel squares)
-        return all([read_bit(letter_check[0],letter_check[1])
+        # the crosscheck bit in for that particular letter is not False
+        # (slice removes sentinel squares) - i.e. no letter in this word
+        # forms an invalid crossword in the orthogonal column.
+
+        return all([read_bit(letter_check[0], letter_check[1])
                     for letter_check in np.column_stack(
-                (row.valid_letters[1:-1],row.existing_letters[1:-1]))])
+                (row.this_row_crosschecks[1:-1], row.existing_letters[1:-1]))])
 
     def update_affected_squares(self, move: Move):
         """ Updates cached running totals and valid letters to play when making cross-words
         """
+
+        # get all the squares in the played word, existing and new tiles:
         filled_squares = move.row.squares_in_word(move.start_index)
+
+        # set blank square at either end as a hook, plus add the total of this word
+        # as a crossword score for the orthogonal columns crossing those blank squares
         move.row.update_hooks_and_running_scores(move.start_index)
         self.update_valid_letters(move.row, move.start_index)
 
@@ -98,6 +110,11 @@ class MoveValidator:
             column.update_hooks_and_running_scores(move.row.rank)
             self.update_valid_letters(column, move.row.rank)
 
+        # change multiplier for played squares to 1,
+        # the identity for multiplication, so they aren't re-used:move
+        move.row.letter_multipliers[move.played_squares] = 1
+        move.row.word_multipliers[move.played_squares] = 1
+
     @staticmethod
     def has_valid_hook(row, played_squares):
         return any(row.hook_squares[played_squares])
@@ -105,16 +122,16 @@ class MoveValidator:
     def update_valid_letters(self, row: Row, index: int):
         square_before = row.squares_in_word(index)[0] - 1
         if square_before > 0:
-            row.orthogonal_row_crosschecks[square_before] = self.valid_letters_for_square(row, square_before)
+            row.orthogonal_column_crosschecks[square_before] = self.valid_letters_for_square(row, square_before)
 
         square_after = row.squares_in_word(index)[-1] + 1
         if square_after < BOARD_SIZE:
-            row.valid_letters[square_after] = self.valid_letters_for_square(row, square_after)
+            row.orthogonal_column_crosschecks[square_after] = self.valid_letters_for_square(row, square_after)
 
     def valid_letters_for_square(self, row: Row, index: int):
         valid_letters = (1 << 32) - 1
         for i in range(1,len(LETTER_DISTRIBUTIONS)):
-            row.existing_lettrs[index] = i
+            row.existing_letters[index] = i
             if row.word_at(index) not in self.lexicon:
                 valid_letters = clear_bit(valid_letters, i)
         row.existing_letters[index] = 0

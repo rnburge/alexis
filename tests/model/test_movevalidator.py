@@ -1,7 +1,6 @@
 from model.bag import Bag
 from model.move import Move
-from model.tile import Tile
-from model.config import LetterDistributions
+from model.config import LETTER_DISTRIBUTIONS
 import copy
 
 

@@ -23,8 +23,8 @@ class Row:
         self.existing_letter_scores = row_data[4]
         self.this_row_crosschecks = row_data[5]
         self.this_row_cross_scores = row_data[6]
-        self.orthogonal_row_crosschecks = row_data[7]
-        self.orthogonal_row_cross_scores = row_data[8]
+        self.orthogonal_column_crosschecks = row_data[7]
+        self.orthogonal_column_cross_scores = row_data[8]
 
     def square_is_empty(self, index_of_square):
         return not self.existing_letters[index_of_square]
@@ -61,7 +61,7 @@ class Row:
 
     def update_hooks_and_running_scores(self, index):
         """ updates the empty squares at either end of whichever word contains the letter at the supplied index.
-        Calculates running scores and valid latters and caches them in these squares """
+        Calculates running scores and valid letters and caches them in these squares """
 
         start_square = self.squares_in_word(index)[0]
         end_square = self.squares_in_word(index)[-1]
@@ -74,10 +74,11 @@ class Row:
         if end_square < (BOARD_SIZE - 1):  # there's only a next empty square if we're not at the far edge of the board
             squares_to_update.append(end_square + 1)
 
-        self.hook_squares()[self.squares_in_word(index)] = False
-        self.hook_squares()[squares_to_update] = True
+        self.hook_squares[self.squares_in_word(index)] = False
+        self.hook_squares[squares_to_update] = True
 
-        self.column_cross_scores[squares_to_update] = np.sum(self.existing_letter_scores[self.squares_in_word(index)])
+        self.orthogonal_column_cross_scores[squares_to_update] \
+            = np.sum(self.existing_letter_scores[self.squares_in_word(index)])
 
     def place_tiles(self, played_squares, tiles):
         tile_ordinals = [(ord(t)-64) for t in tiles]

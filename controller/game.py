@@ -67,6 +67,11 @@ class GameController:
         try:
             while self.game_state is GameState.FIRST_MOVE and (move is None or not self.validator.is_valid(move)):
                 move = self.active_player.get_starting_move()
+                try:
+                    self.validator.is_valid(move)
+                except MoveValidationError:
+                    continue
+
                 if move.direction is not Direction.NOT_APPLICABLE:
                     self.game_state = GameState.RUNNING
 
@@ -77,6 +82,11 @@ class GameController:
 
             while self.game_state is not GameState.ENDED and (move is None or not self.validator.is_valid(move)):
                 move = self.active_player.get_move()
+                try:
+                    self.validator.is_valid(move)
+                except MoveValidationError:
+                    continue
+
             if self.game_state is not GameState.ENDED:
                 self.execute_move(move)
                 self.change_active_player()
@@ -139,9 +149,6 @@ class GameController:
         """ Play a previously validated move on the board.
         :param move: The move to be played.
         """
-        # recreate move using a live view of the game board row rather than a copy:
-        move = Move(self.board.get_row(move.row.rank, move.direction, False), move.start_index, move.tiles)
-        self.validator.is_valid(move)
         self.validator.update_affected_squares(move)
 
         self.active_player.score += move.score
