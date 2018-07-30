@@ -1,0 +1,4 @@
+[
+  "test_consolegui.py::test_create_gui",
+  "test_consolegui.py::test_parse_move_string"
+]

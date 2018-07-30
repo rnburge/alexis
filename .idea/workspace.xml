@@ -2,24 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2176df42-d937-4265-9f8a-23ee001c351f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/model/aiplayer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/alexis.py" beforeDir="false" afterPath="$PROJECT_DIR$/alexis.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/move.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/move.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/movevalidator.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/movevalidator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/row.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/row.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/.pytest_cache/v/cache/lastfailed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/.pytest_cache/v/cache/lastfailed" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/.pytest_cache/v/cache/nodeids" beforeDir="false" afterPath="$PROJECT_DIR$/tests/.pytest_cache/v/cache/nodeids" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/model/.pytest_cache/v/cache/lastfailed" beforeDir="false" afterPath="$PROJECT_DIR$/tests/model/.pytest_cache/v/cache/lastfailed" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/model/.pytest_cache/v/cache/nodeids" beforeDir="false" afterPath="$PROJECT_DIR$/tests/model/.pytest_cache/v/cache/nodeids" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/model/test_aiplayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/model/test_aiplayer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/model/test_movevalidator.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/model/test_movevalidator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/model/test_tile.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/view/test_consolegui.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/view/test_consolegui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/consolegui.py" beforeDir="false" afterPath="$PROJECT_DIR$/view/consolegui.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -56,7 +39,7 @@
       <file leaf-file-name="aiplayer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/aiplayer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-534">
+            <state relative-caret-position="-184">
               <caret line="110" column="63" selection-start-line="110" selection-start-column="63" selection-end-line="110" selection-end-column="63" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
@@ -316,6 +299,14 @@
       <option name="presentableId" value="Default" />
       <updated>1531660456673</updated>
     </task>
+    <task id="LOCAL-00001" summary="fails after a few moves">
+      <created>1532879176366</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1532879176366</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -352,14 +343,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="1176" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="12" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Python Console" order="5" weight="0.35061264" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.32987747" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.32987747" />
       <window_info anchor="bottom" id="Terminal" order="4" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.291875" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -382,6 +372,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fails after a few moves" />
+    <option name="LAST_COMMIT_MESSAGE" value="fails after a few moves" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -888,7 +882,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/model/aiplayer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-534">
+        <state relative-caret-position="-184">
           <caret line="110" column="63" selection-start-line="110" selection-start-column="63" selection-end-line="110" selection-end-column="63" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
