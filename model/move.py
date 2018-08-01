@@ -21,6 +21,7 @@ class Move:
         self.row = row
         self.start_index = start_index
         self.tiles = tiles
+        self.is_valid = None
 
         if not row:
             self.direction = Direction.NOT_APPLICABLE
@@ -28,7 +29,6 @@ class Move:
         else:
             self.direction = self.row.direction
             self.played_squares = row.empty_squares(start_index)[:len(tiles)]
-            self.is_valid = None
 
         # score will be None when not yet calculated:
         self.score = None
@@ -43,7 +43,7 @@ class Move:
             return Direction.NOT_APPLICABLE
 
     def calculate_score(self):
-        tile_values = [LETTER_VALUES[(ord(t)-64)] for t in self.tiles]
+        tile_values = [(LETTER_VALUES[(ord(t)-64)] if t.isupper() else LETTER_VALUES[0]) for t in self.tiles]
         squares_in_whole_word = self.row.squares_in_word(self.start_index)
 
         # store score of new tiles on board:

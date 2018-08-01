@@ -37,14 +37,14 @@ class Row:
         """ :param index_of_square the index of any letter in the word
         :return the index of the first letter in the word
         """
-        if self.empty_squares()[0] >= index_of_square:  # no empty square precedes this one
+        if len(self.empty_squares()) == 0 or self.empty_squares()[0] >= index_of_square:  # no empty square precedes this one
             return 1
         return np.where(self.existing_letters[:index_of_square] == 0)[0][-1] + 1  # one over from index of last empty square
 
     def squares_in_word(self, index):
         start_square = self.start_of_word(index)
         empties = self.empty_squares(index)  # all empty squares after word
-        end_square = (BOARD_SIZE - 1) if len(empties) == 0 else empties[0]  # last square on board else first empty square
+        end_square = BOARD_SIZE if len(empties) == 0 else empties[0]  # last square on board else first empty square
         return np.arange(start_square, end_square)
 
     def squares_in_potential_word(self, index):
@@ -63,7 +63,11 @@ class Row:
         """ updates the empty squares at either end of whichever word contains the letter at the supplied index.
         Calculates running scores and valid letters and caches them in these squares """
 
-        start_square = self.squares_in_word(index)[0]
+        try:
+            start_square = self.squares_in_word(index)[0]
+        except Exception as ex:
+            print("Something exploded: " + str(ex))
+
         end_square = self.squares_in_word(index)[-1]
 
         squares_to_update = []
@@ -142,3 +146,17 @@ class Row:
 
     def __repr__(self):
         return 'row object:\n'+str(self)
+
+    def __eq__(self, other):
+        return type(other) == type(self) \
+               and str(self) \
+               + str(self.this_row_crosschecks) \
+               + str(self.this_row_cross_scores) \
+               == str(other) \
+               + str(other.this_row_crosschecks) \
+               + str(other.this_row_cross_scores)
+
+    def __hash__(self):
+        return hash(str(self)
+                    + str(self.this_row_crosschecks)
+                    + str(self.this_row_cross_scores))

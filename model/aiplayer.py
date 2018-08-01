@@ -11,6 +11,8 @@ from model.row import Row
 from view.view import View
 from model.movevalidator import  MoveValidationError
 
+from functools import lru_cache as memoize
+
 
 class AiPlayer(Player):
     """ represents a AI-controlled player """
@@ -38,20 +40,24 @@ class AiPlayer(Player):
         valid_moves = []
 
         # grab a COPY of all the rows which have start squares/hooks in them:
-        rows_to_consider = [self.board.get_row(i, Direction.HORIZONTAL) for i in range(1, BOARD_SIZE) if
-                            self.board.hook_squares[i, :].any()]
+        rows_to_consider = \
+            [self.board.get_row(i, Direction.HORIZONTAL)
+             for i in range(1, BOARD_SIZE)
+             if self.board.hook_squares[i, :].any()]
+
         # now add columns:
         rows_to_consider.extend(
-            [self.board.get_row(i, Direction.VERTICAL) for i in range(1, BOARD_SIZE) if self.board.hook_squares[:, i].any()])
+            [self.board.get_row(i, Direction.VERTICAL)
+             for i in range(1, BOARD_SIZE)
+             if self.board.hook_squares[:, i].any()])
 
+        # TODO: consider each row in different thread, see e.g.
+        # https://medium.com/@shashwat_ds/a-tiny-multi-threaded-job-queue-in-30-lines-of-python-a344c3f3f7f0
         for row in rows_to_consider:
             valid_moves.extend(self.moves_for_row(row))
 
         if '@' in self.rack:
             self.check_blank_permutations()
-
-        if len(valid_moves) == 0:
-            pass
 
         return valid_moves
 
@@ -78,11 +84,14 @@ class AiPlayer(Player):
         valid_moves = []
 
         for hook in hooks:
-            valid_moves.extend(self.play_on_square(row, hook, [None] * 16))
+            valid_moves.extend(self.play_on_square(row, hook, tuple([None] * 16)))
 
         return valid_moves
 
-    def play_on_square(self, row, index, played_tiles):
+    @memoize(2048)
+    def play_on_square(self, row, index, played_tiles: tuple):
+
+        played_tiles = list(played_tiles)
         valid_moves = []
 
         # get all the letters we could play on this square without making nonsense in the corresponding column:
@@ -130,7 +139,7 @@ class AiPlayer(Player):
         if self.game.lexicon.contains_prefix(row.word_at(index)):
             if row.empty_squares(index + 1).any():
                 next_empty_square = row.empty_squares(index + 1)[0]
-                valid_moves.extend(self.play_on_square(row, next_empty_square, played_tiles))
+                valid_moves.extend(self.play_on_square(row, next_empty_square, tuple(played_tiles)))
         return valid_moves
 
     def extend_left(self, index, played_tiles, row):
@@ -141,10 +150,11 @@ class AiPlayer(Player):
             next_empty_square = [square for square in row.empty_squares() if square < index][-1]
             # if that square happens to be a hook, we'll have already formed all the words extending from it:
             if not row.hook_squares[next_empty_square]:
-                valid_moves.extend(self.play_on_square(row, next_empty_square, played_tiles))
+                valid_moves.extend(self.play_on_square(row, next_empty_square, tuple(played_tiles)))
         return valid_moves
 
-    def permute_blanks(self, move):
+    @staticmethod
+    def permute_blanks(move):
         """ takes the argument move containing a blank, and returns a list of moves containing
         all permutations of this move with the blank in different positions
         (this will only result in additional moves if the word contains another tile with the
@@ -162,9 +172,10 @@ class AiPlayer(Player):
         return moves
 
     def check_blank_permutations(self):
-        ''' this needs to see if any moves use the same letter on a blank as an existing character, and if so generate extra moves by swapping them '''
+        """ this needs to see if any moves use the same letter on a blank as an existing
+        character, and if so generate extra moves by swapping them """
         pass
-        #if any(type(tile) is BlankTile for tile in played_tiles):
+        # if any(type(tile) is BlankTile for tile in played_tiles):
         #    # check for playing the blank in different spaces:
         #    valid_moves.extend(self.permute_blanks(new_move))
         #else:

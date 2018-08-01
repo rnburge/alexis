@@ -90,4 +90,11 @@ class Rack:
         return False
 
     def __repr__(self):
-        return 'Rack object containing the following tiles:\n' + str(self)
+        return 'Rack object containing the following tiles:\n' + ''.join(sorted(str(self)))
+
+    def __eq__(self, other):
+        return type(other) == type(self) and repr(other) == repr(self)
+
+    def __hash__(self):
+        return hash(repr(self))
+
