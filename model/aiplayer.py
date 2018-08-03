@@ -1,4 +1,3 @@
-import copy
 import numpy as np
 
 from model.move import Move
@@ -9,9 +8,7 @@ from model.config import Direction, BOARD_SIZE
 from model.player import Player
 from model.row import Row
 from view.view import View
-from model.movevalidator import  MoveValidationError
-
-from functools import lru_cache as memoize
+from model.movevalidator import MoveValidationError
 
 
 class AiPlayer(Player):
@@ -30,7 +27,7 @@ class AiPlayer(Player):
         possible_moves = self.generate_all_moves()
         move = self.best_move(possible_moves)
 
-        #reset row so it doesn't already contain played tiles:
+        # reset row so it doesn't already contain played tiles:
         if move.row:
             move.row = self.board.get_row(move.row.rank, move.row.direction)
         return move
@@ -88,7 +85,6 @@ class AiPlayer(Player):
 
         return valid_moves
 
-    @memoize(2048)
     def play_on_square(self, row, index, played_tiles: tuple):
 
         played_tiles = list(played_tiles)

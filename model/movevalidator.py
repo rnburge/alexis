@@ -111,7 +111,7 @@ class MoveValidator:
             self.update_valid_letters(column, move.row.rank)
 
         # change multiplier for played squares to 1,
-        # the identity for multiplication, so they aren't re-used:move
+        # the identity for multiplication, so they aren't re-used
         move.row.letter_multipliers[move.played_squares] = 1
         move.row.word_multipliers[move.played_squares] = 1
 

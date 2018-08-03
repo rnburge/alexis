@@ -56,9 +56,9 @@ class Move:
         self.score *= np.prod(self.row.word_multipliers[self.played_squares])
         # add scores of cross-words
         self.score += np.sum(np.where(
-            self.row.orthogonal_column_cross_scores != NO_CROSS_WORD,
+            self.row.this_row_cross_scores != NO_CROSS_WORD,
             ((self.row.existing_letter_scores * self.row.letter_multipliers
-              + self.row.orthogonal_column_cross_scores) * self.row.word_multipliers),
+              + self.row.this_row_cross_scores) * self.row.word_multipliers),
             np.zeros(17))[self.played_squares])
         # add bonus if we played a full rack of tiles
         if len(self.played_squares) == RACK_SIZE:

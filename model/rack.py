@@ -1,4 +1,4 @@
-from model.config import RACK_SIZE
+from model.config import RACK_SIZE, LETTER_VALUES
 from model.bag import Bag
 from collections import Counter
 import numpy as np
@@ -79,6 +79,9 @@ class Rack:
                 [self.contains(''.join(contents[np.arange(len(contents)) != i]), tiles_in_rack)
                  for i in range(len(contents))]
             )
+
+    def score_of_remaining_tiles(self):
+        return np.sum([LETTER_VALUES[ord(tile) - 64] for tile in self.rack_tiles])
 
     def __contains__(self, possible_contents):
         if isinstance(possible_contents, str):

@@ -1,7 +1,6 @@
 import numpy as np
 
 from model.config import Direction, BOARD_SIZE
-from util.bit_twiddling import set_bit, uint32_from_bool_array
 
 
 class Row:
@@ -63,11 +62,7 @@ class Row:
         """ updates the empty squares at either end of whichever word contains the letter at the supplied index.
         Calculates running scores and valid letters and caches them in these squares """
 
-        try:
-            start_square = self.squares_in_word(index)[0]
-        except Exception as ex:
-            print("Something exploded: " + str(ex))
-
+        start_square = self.squares_in_word(index)[0]
         end_square = self.squares_in_word(index)[-1]
 
         squares_to_update = []

@@ -6,12 +6,9 @@ from model.bag import Bag
 from model.lexicon import Lexicon
 from model.move import Move, Direction
 from model.movevalidator import MoveValidator, MoveValidationError
-from model.config import PASS_LIMIT, RACK_SIZE
+from model.config import PASS_LIMIT
 from typing import List
 from model.player import Player
-import numpy as np
-
-from model.row import Row
 
 
 class GameState(Enum):
@@ -156,8 +153,20 @@ class GameController:
         self.active_player.rack.replenish_tiles()
 
     def adjust_final_scores(self):
-        # TODO needs to adjust scores for tiles left in rack
-        pass
+        # adjusts final scores based on letters left in rack
+
+        adjustment = 0
+
+        # deduct the value of any tiles left from each player's hand
+        for player in self.players:
+            this_player_remaining_tiles = player.rack.score_of_remaining_tiles()
+            player.score -= this_player_remaining_tiles
+            adjustment += this_player_remaining_tiles
+
+        # if the last player played out,
+        # add the value of everyone else's tiles to their score
+        if len(self.active_player.rack) == 0:
+            self.active_player.score += adjustment
 
     def clean_up_invalid_move(self, move: Move):
         try:

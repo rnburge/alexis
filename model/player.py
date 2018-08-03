@@ -1,4 +1,5 @@
 from model.bag import Bag
+from model.config import LETTER_VALUES
 from model.rack import Rack
 
 
@@ -26,7 +27,6 @@ class Player:
             the display to show the new move.
         """
         self.view.update_view()
-
 
 
 
