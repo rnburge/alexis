@@ -1,5 +1,4 @@
 import numpy as np
-
 from model.config import Direction, BOARD_SIZE
 
 

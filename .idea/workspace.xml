@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2176df42-d937-4265-9f8a-23ee001c351f" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/util/threadutils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/alexis.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/alexis.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/game.py" beforeDir="false" afterPath="$PROJECT_DIR$/controller/game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/aiplayer.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/aiplayer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/move.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/move.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/movevalidator.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/movevalidator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/player.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/player.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/rack.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/rack.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/row.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/row.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,6 +16,10 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/alexis$py_test_in_threadutils_py.coverage" NAME="py.test in threadutils.py Coverage Results" MODIFIED="1533303721730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
+    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_lexicon_py.coverage" NAME="py.test in test_lexicon.py Coverage Results" MODIFIED="1532866394011" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
+    <SUITE FILE_PATH="coverage/alexis$alexis.coverage" NAME="alexis Coverage Results" MODIFIED="1533310218612" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_tile_py.coverage" NAME="py.test in test_tile.py Coverage Results" MODIFIED="1532866407266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
     <SUITE FILE_PATH="coverage/alexis$py_test_in_tests.coverage" NAME="py.test in tests Coverage Results" MODIFIED="1532867299194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
     <SUITE FILE_PATH="coverage/alexis$py_test_in_test_bag_py__1_.coverage" NAME="py.test in test_bag.py (1) Coverage Results" MODIFIED="1532263231527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
     <SUITE FILE_PATH="coverage/alexis$py_test_in_test_bag_py.coverage" NAME="py.test in test_bag.py Coverage Results" MODIFIED="1531661153769" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
@@ -27,14 +27,67 @@
     <SUITE FILE_PATH="coverage/alexis$py_test_in_test_consolegui_py.coverage" NAME="py.test in test_consolegui.py Coverage Results" MODIFIED="1532867294479" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/view" />
     <SUITE FILE_PATH="coverage/alexis$py_test_in_test_move_py.coverage" NAME="py.test in test_move.py Coverage Results" MODIFIED="1532866400382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
     <SUITE FILE_PATH="coverage/alexis$py_test_in_test_rack_py.coverage" NAME="py.test in test_rack.py Coverage Results" MODIFIED="1532866403764" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
-    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_lexicon_py.coverage" NAME="py.test in test_lexicon.py Coverage Results" MODIFIED="1532866394011" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
-    <SUITE FILE_PATH="coverage/alexis$alexis.coverage" NAME="alexis Coverage Results" MODIFIED="1533290184985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/alexis$py_test_in_test_aiplayer_py.coverage" NAME="py.test in test_aiplayer.py Coverage Results" MODIFIED="1532866261124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
-    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_tile_py.coverage" NAME="py.test in test_tile.py Coverage Results" MODIFIED="1532866407266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
     <SUITE FILE_PATH="coverage/alexis$py_test_in_test_movevalidator_py.coverage" NAME="py.test in test_movevalidator.py Coverage Results" MODIFIED="1532866302714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
+    <SUITE FILE_PATH="coverage/alexis$threadutils.coverage" NAME="threadutils Coverage Results" MODIFIED="1533303963371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="aiplayer.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/model/aiplayer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="854">
+              <caret line="151" column="42" lean-forward="true" selection-start-line="151" selection-start-column="42" selection-end-line="151" selection-end-column="42" />
+              <folding>
+                <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="builtins.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/-1129814973/builtins.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="3617" column="8" selection-start-line="3617" selection-start-column="8" selection-end-line="3617" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="threadutils.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/util/threadutils.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="42" column="51" lean-forward="true" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+              <folding>
+                <element signature="e#107#135#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rack.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/rack.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="row.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/row.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="64">
+              <caret line="89" column="18" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -48,6 +101,9 @@
     <findStrings>
       <find>score</find>
       <find>memo</find>
+      <find>self.rack</find>
+      <find>copy</find>
+      <find>deep</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -75,12 +131,13 @@
         <option value="$PROJECT_DIR$/view/consolegui.py" />
         <option value="$PROJECT_DIR$/alexis.py" />
         <option value="$PROJECT_DIR$/model/movevalidator.py" />
-        <option value="$PROJECT_DIR$/model/row.py" />
-        <option value="$PROJECT_DIR$/model/aiplayer.py" />
         <option value="$PROJECT_DIR$/model/move.py" />
         <option value="$PROJECT_DIR$/model/player.py" />
-        <option value="$PROJECT_DIR$/model/rack.py" />
         <option value="$PROJECT_DIR$/controller/game.py" />
+        <option value="$PROJECT_DIR$/model/row.py" />
+        <option value="$PROJECT_DIR$/util/threadutils.py" />
+        <option value="$PROJECT_DIR$/model/rack.py" />
+        <option value="$PROJECT_DIR$/model/aiplayer.py" />
       </list>
     </option>
   </component>
@@ -185,20 +242,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="py.test in C:/code/alexis/tests/model/test_tile.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+    <configuration name="threadutils" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="alexis" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/model" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/util" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/model/test_tile.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/util/threadutils.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
     </configuration>
     <configuration name="py.test in test_consolegui.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
       <module name="alexis" />
@@ -213,21 +274,6 @@
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/view/test_consolegui.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-    </configuration>
-    <configuration name="py.test in test_rack.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
-      <module name="alexis" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests/model" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_keywords" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/tests/model/test_rack.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
     <configuration name="py.test in tests" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
@@ -245,20 +291,35 @@
       <option name="_new_target" value="&quot;$PROJECT_DIR$/tests&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
+    <configuration name="py.test in threadutils.py" type="tests" factoryName="py.test" temporary="true" nameIsGenerated="true">
+      <module name="alexis" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/util" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_keywords" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/util/threadutils.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+    </configuration>
     <list>
       <item itemvalue="Python tests.py.test in tests" />
-      <item itemvalue="Python tests.py.test in test_rack.py" />
-      <item itemvalue="Python tests.py.test in C:/code/alexis/tests/model/test_tile.py" />
       <item itemvalue="Python tests.py.test in test_consolegui.py" />
       <item itemvalue="Python.alexis" />
+      <item itemvalue="Python tests.py.test in threadutils.py" />
+      <item itemvalue="Python.threadutils" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.alexis" />
+        <item itemvalue="Python.threadutils" />
+        <item itemvalue="Python tests.py.test in threadutils.py" />
         <item itemvalue="Python tests.py.test in tests" />
         <item itemvalue="Python tests.py.test in test_consolegui.py" />
-        <item itemvalue="Python tests.py.test in C:/code/alexis/tests/model/test_tile.py" />
-        <item itemvalue="Python tests.py.test in test_rack.py" />
       </list>
     </recent_temporary>
   </component>
@@ -284,9 +345,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="py_test_in_test_consolegui_py - 2018.07.29 at 13h 20m 09s.xml">
-      <configuration name="py.test in test_consolegui.py" configurationId="tests" />
-    </history-entry>
     <history-entry file="py_test_in_test_consolegui_py - 2018.07.29 at 13h 20m 18s.xml">
       <configuration name="py.test in test_consolegui.py" configurationId="tests" />
     </history-entry>
@@ -314,6 +372,9 @@
     <history-entry file="py_test_in_tests - 2018.07.29 at 13h 28m 19s.xml">
       <configuration name="py.test in tests" configurationId="tests" />
     </history-entry>
+    <history-entry file="py_test_in_threadutils_py - 2018.08.03 at 14h 42m 04s.xml">
+      <configuration name="py.test in threadutils.py" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -326,13 +387,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" anchor="bottom" id="TODO" order="12" visible="true" weight="0.32882273" />
+      <window_info anchor="bottom" id="TODO" order="12" weight="0.32882273" />
       <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="2" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" />
       <window_info anchor="bottom" id="Python Console" order="5" weight="0.28687415" />
-      <window_info anchor="bottom" id="Run" order="8" weight="0.49917626" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.32882273" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.32882273" />
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.30014327" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
@@ -362,11 +424,33 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/model/aiplayer.py</url>
+          <line>71</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/model/rack.py</url>
+          <line>39</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="7" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>x = valid_moves.extend(moves[0])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>valid_moves.extend(moves[0])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>move.is_valid</expression-string>
         <language-id>Python</language-id>
@@ -402,23 +486,28 @@
         <language-id>Python</language-id>
         <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
       </expression>
-      <expression>
-        <expression-string>[(LETTER_VALUES[(ord(t)-64)] if t.isupper() else 0) for t in self.tiles]</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>tiles</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>min(50,26)</expression-string>
-        <language-id>Python</language-id>
-        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
-      </expression>
     </expressions>
     <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>moves[0]</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>type(moves[0])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>type(moves[1])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>type(moves[2])</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>self.squares_in_word(15)</expression-string>
         <language-id>Python</language-id>
@@ -447,23 +536,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/model/row.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1275">
-          <caret line="78" selection-start-line="78" selection-end-line="78" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/movevalidator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1938">
-          <caret line="121" selection-start-line="121" selection-end-line="121" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/controller/game.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1411">
@@ -826,16 +898,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/row.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="81" column="13" lean-forward="true" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/movevalidator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1003">
@@ -876,13 +938,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/rack.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="84" lean-forward="true" selection-start-line="84" selection-end-line="84" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/time.pyi">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -896,12 +951,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/aiplayer.py">
+    <entry file="file://$PROJECT_DIR$/model/row.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="50" column="44" selection-start-line="50" selection-start-column="44" selection-end-line="50" selection-end-column="44" />
+        <state relative-caret-position="64">
+          <caret line="89" column="18" selection-start-line="89" selection-start-column="18" selection-end-line="89" selection-end-column="18" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/threadutils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="42" column="51" lean-forward="true" selection-start-line="42" selection-start-column="51" selection-end-line="42" selection-end-column="51" />
+          <folding>
+            <element signature="e#107#135#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2018.1/system/python_stubs/-1129814973/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="3617" column="8" selection-start-line="3617" selection-start-column="8" selection-end-line="3617" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/rack.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/aiplayer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="854">
+          <caret line="151" column="42" lean-forward="true" selection-start-line="151" selection-start-column="42" selection-end-line="151" selection-end-column="42" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
           </folding>
         </state>
       </provider>

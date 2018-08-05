@@ -1,6 +1,11 @@
+import time
+from copy import deepcopy
+from threading import Thread
+
 import numpy as np
 
 from model.move import Move
+from model.rack import Rack
 from util.bit_twiddling import read_bit
 
 from controller.game import GameController
@@ -9,6 +14,7 @@ from model.player import Player
 from model.row import Row
 from view.view import View
 from model.movevalidator import MoveValidationError
+import itertools
 
 
 class AiPlayer(Player):
@@ -50,13 +56,32 @@ class AiPlayer(Player):
 
         # TODO: consider each row in different thread, see e.g.
         # https://medium.com/@shashwat_ds/a-tiny-multi-threaded-job-queue-in-30-lines-of-python-a344c3f3f7f0
-        for row in rows_to_consider:
-            valid_moves.extend(self.moves_for_row(row))
+
+        moves = np.full(len(rows_to_consider), None)
+
+        for i in range(len(rows_to_consider)):
+            row = rows_to_consider[i]
+            thread = Thread(target=self.get_moves, args=(moves, i, row))
+            thread.start()
+
+        while None in moves:
+            time.sleep(0)
+
+        valid_moves.extend(itertools.chain.from_iterable(moves))
+
+        print(str(valid_moves))
+
+        print("*** moving on ***")
 
         if '@' in self.rack:
             self.check_blank_permutations()
 
         return valid_moves
+
+    def get_moves(self, moves, i, row):
+        moves[i] = self.moves_for_row(row, deepcopy(self.rack))
+        # **DEBUG** :
+        print("added move "+str(i))
 
     def best_move(self, potential_moves):
         """ This returns whatever the AI considers the best move to be out of all the moves in the argument list """
@@ -74,32 +99,31 @@ class AiPlayer(Player):
             pass
         return best_move
 
-    def moves_for_row(self, row: Row):
+    def moves_for_row(self, row: Row, rack: Rack):
         """ returns all valid moves playable in the argument row """
 
         hooks = np.nonzero(row.hook_squares)[0]
         valid_moves = []
 
         for hook in hooks:
-            valid_moves.extend(self.play_on_square(row, hook, tuple([None] * 16)))
+            valid_moves.extend(self.play_on_square(row, hook, [None] * 16, rack))
 
         return valid_moves
 
-    def play_on_square(self, row, index, played_tiles: tuple):
+    def play_on_square(self, row, index, played_tiles, rack: Rack):
 
-        played_tiles = list(played_tiles)
         valid_moves = []
 
         # get all the letters we could play on this square without making nonsense in the corresponding column:
         valid_cross_plays = [chr(64 + x) for x in range(1, 27) if read_bit(row.this_row_crosschecks[index], x)]
 
         # filter that to ones we can actually use with tiles from our rack (all of them if we have a blank!)
-        valid_tiles = valid_cross_plays if '@' in self.rack else [x for x in valid_cross_plays if x in self.rack]
+        valid_tiles = valid_cross_plays if '@' in rack else [x for x in valid_cross_plays if x in rack]
 
         try:
             # for each of the playable tiles, stick it in the square
             for tile_letter in valid_tiles:
-                tile = self.rack.get_tile(tile_letter)
+                tile = rack.get_tile(tile_letter)
                 played_tiles[index] = tile
                 row.existing_letters[index] = ord(tile)-64
 
@@ -111,9 +135,9 @@ class AiPlayer(Player):
                     #print(self.name+": Considering move: "+str(new_move)+" move.direction="+str(new_move.direction))
                     valid_moves.append(new_move)
 
-                if len(self.rack) > 0:
-                    valid_moves.extend(self.extend_right(index, played_tiles, row))
-                    valid_moves.extend(self.extend_left(index, played_tiles, row))
+                if len(rack) > 0:
+                    valid_moves.extend(self.extend_right(index, played_tiles, row, rack))
+                    valid_moves.extend(self.extend_left(index, played_tiles, row, rack))
 
                 # return the tile:
 
@@ -121,7 +145,7 @@ class AiPlayer(Player):
                 if ord(tile) > ord('Z'):
                     tile = '@'
                 # put tile back in rack
-                self.rack.add_tile(tile)
+                rack.add_tile(tile)
                 # set board square back to no letter
                 row.existing_letters[index] = 0
                 # remove tile from list of played tiles:
@@ -130,15 +154,15 @@ class AiPlayer(Player):
             pass
         return valid_moves
 
-    def extend_right(self, index, played_tiles, row):
+    def extend_right(self, index, played_tiles, row, rack: Rack):
         valid_moves = []
         if self.game.lexicon.contains_prefix(row.word_at(index)):
             if row.empty_squares(index + 1).any():
                 next_empty_square = row.empty_squares(index + 1)[0]
-                valid_moves.extend(self.play_on_square(row, next_empty_square, tuple(played_tiles)))
+                valid_moves.extend(self.play_on_square(row, next_empty_square, played_tiles, rack))
         return valid_moves
 
-    def extend_left(self, index, played_tiles, row):
+    def extend_left(self, index, played_tiles, row, rack: Rack):
         valid_moves = []
         # if there's still a blank left in this row somewhere to the left:
         if [square for square in row.empty_squares() if square < index]:
@@ -146,7 +170,7 @@ class AiPlayer(Player):
             next_empty_square = [square for square in row.empty_squares() if square < index][-1]
             # if that square happens to be a hook, we'll have already formed all the words extending from it:
             if not row.hook_squares[next_empty_square]:
-                valid_moves.extend(self.play_on_square(row, next_empty_square, tuple(played_tiles)))
+                valid_moves.extend(self.play_on_square(row, next_empty_square, played_tiles, rack))
         return valid_moves
 
     @staticmethod
