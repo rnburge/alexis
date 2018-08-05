@@ -9,7 +9,7 @@ from model.rack import Rack
 from util.bit_twiddling import read_bit
 
 from controller.game import GameController
-from model.config import Direction, BOARD_SIZE
+from model.config import Direction, BOARD_SIZE, LETTER_VALUES
 from model.player import Player
 from model.row import Row
 from view.view import View
@@ -28,6 +28,21 @@ class AiPlayer(Player):
 
     def get_starting_move(self):
         return self.get_move()
+        # only need to consider one starting row (column would just be a transpose):
+        row = deepcopy(self.board.get_row(8, Direction.HORIZONTAL))
+        
+        possible_moves = self.play_on_square(row, 8, [None] * 16, self.rack)
+
+        if '@' in self.rack:
+            self.check_blank_permutations()
+
+        return self.best_move(possible_moves)
+
+        # reset row so it doesn't already contain played tiles:
+        #if move.row:
+        # #   move.row = self.board.get_row(move.row.rank, move.row.direction)
+
+        #return move
 
     def get_move(self):
         possible_moves = self.generate_all_moves()
@@ -42,36 +57,42 @@ class AiPlayer(Player):
         """ returns a list of all possible moves """
         valid_moves = []
 
-        # grab a COPY of all the rows which have start squares/hooks in them:
+        # grab a list of all the rows which have start squares/hooks in them:
         rows_to_consider = \
             [self.board.get_row(i, Direction.HORIZONTAL)
              for i in range(1, BOARD_SIZE)
              if self.board.hook_squares[i, :].any()]
 
-        # now add columns:
+        # do the same for columns:
         rows_to_consider.extend(
             [self.board.get_row(i, Direction.VERTICAL)
              for i in range(1, BOARD_SIZE)
              if self.board.hook_squares[:, i].any()])
 
-        # TODO: consider each row in different thread, see e.g.
-        # https://medium.com/@shashwat_ds/a-tiny-multi-threaded-job-queue-in-30-lines-of-python-a344c3f3f7f0
+        # rows are independent of each other, but share some squares with columns,
+        # so we can consider all rows at once, and all columns at once, but not the
+        # two together:
 
+        # make list of lists of possible moves, each index will be list from a different thread
         moves = np.full(len(rows_to_consider), None)
-
+        # to keep track of thread references:
+        row_threads = []
+        # consider each row in separate thread:
         for i in range(len(rows_to_consider)):
             row = rows_to_consider[i]
             thread = Thread(target=self.get_moves, args=(moves, i, row))
+            row_threads.append(thread)
             thread.start()
-
-        while None in moves:
-            time.sleep(0)
-
+        # wait for all threads to finish:
+        [t.join() for t in row_threads]
+        #    concatenate all move lists from all threads
         valid_moves.extend(itertools.chain.from_iterable(moves))
 
-        print(str(valid_moves))
+        # DEBUG:
+        # print(str(valid_moves))
 
-        print("*** moving on ***")
+        # DEBUG
+        # print("*** moving on ***")
 
         if '@' in self.rack:
             self.check_blank_permutations()
@@ -79,24 +100,22 @@ class AiPlayer(Player):
         return valid_moves
 
     def get_moves(self, moves, i, row):
-        moves[i] = self.moves_for_row(row, deepcopy(self.rack))
+        moves[i] = self.moves_for_row(deepcopy(row), deepcopy(self.rack))
         # **DEBUG** :
-        print("added move "+str(i))
+        # print("added move "+str(i))
 
     def best_move(self, potential_moves):
         """ This returns whatever the AI considers the best move to be out of all the moves in the argument list """
-        try:
-            potential_moves.sort(key=lambda x: x.score, reverse=True)
-            best_move = potential_moves[0] if potential_moves else Move(None, None, None)
 
-            # now we've decided on a move, remove those tiles from the rack:
-            if best_move.tiles:
-                self.rack.get_tiles(''.join([str(t) for t in best_move.tiles]))
-            # DEBUG:
-            #print(self.name+": Best move is: "+str(best_move))  # DEBUG
+        potential_moves.sort(key=lambda x: x.score, reverse=True)
+        best_move = potential_moves[0] if potential_moves else Move(None, None, None)
+        # now we've decided on a move, remove those tiles from the rack:
+        if best_move.tiles:
+            self.rack.get_tiles(''.join([str(t) for t in best_move.tiles]))
 
-        except Exception as err:
-            pass
+        # DEBUG:
+        #print(self.name+": Best move is: "+str(best_move))  # DEBUG
+
         return best_move
 
     def moves_for_row(self, row: Row, rack: Rack):
@@ -164,13 +183,14 @@ class AiPlayer(Player):
 
     def extend_left(self, index, played_tiles, row, rack: Rack):
         valid_moves = []
-        # if there's still a blank left in this row somewhere to the left:
-        if [square for square in row.empty_squares() if square < index]:
-            # then mark that next empty square as the one to play a tile in next:
-            next_empty_square = [square for square in row.empty_squares() if square < index][-1]
-            # if that square happens to be a hook, we'll have already formed all the words extending from it:
-            if not row.hook_squares[next_empty_square]:
-                valid_moves.extend(self.play_on_square(row, next_empty_square, played_tiles, rack))
+        if self.game.lexicon.contains_suffix(row.word_at(index)):
+            # if there's still a blank left in this row somewhere to the left:
+            if [square for square in row.empty_squares() if square < index]:
+                # then mark that next empty square as the one to play a tile in next:
+                next_empty_square = [square for square in row.empty_squares() if square < index][-1]
+                # if that square happens to be a hook, we'll have already formed all the words extending from it:
+                if not row.hook_squares[next_empty_square]:
+                    valid_moves.extend(self.play_on_square(row, next_empty_square, played_tiles, rack))
         return valid_moves
 
     @staticmethod

@@ -86,9 +86,6 @@ class Row:
         self.existing_letters[played_squares] = 0
 
     def __str__(self):
-        # DEBUG:
-        return self.debug_row_string()  # DEBUG
-
         row_num = '  '
         if self.rank % BOARD_SIZE == 0:
             row = '+' + ('-' * (BOARD_SIZE - 1)) + '+'
@@ -121,36 +118,36 @@ class Row:
             row = ''.join(np.where(self.existing_letters > 0, letters, list(row)))
         return row_num + ' ' + ' '.join(row)
 
-    def debug_row_string(self):
-        row_num = '  '
-        if self.rank % BOARD_SIZE == 0:
-            row = '+' + ('-' * (BOARD_SIZE - 1)) + '+'
-        else:
-            rank = self.rank if self.direction == Direction.HORIZONTAL else chr(64 + self.rank)
-            row_num = ' ' * (2 - len(str(rank))) + str(rank)
-            row = '|' + ('.' * (BOARD_SIZE - 1)) + '|'
-            row = ''.join(np.where(self.letter_multipliers == 2, "'", list(row)))
-            row = ''.join(np.where(self.letter_multipliers == 3, '"', list(row)))
-            row = ''.join(np.where(self.word_multipliers == 2, '-', list(row)))
-            row = ''.join(np.where(self.word_multipliers == 3, '=', list(row)))
-            row = ''.join(np.where(self.hook_squares, '*', list(row)))
-            letters = [chr(x + 64) for x in self.existing_letters]
-            row = ''.join(np.where(self.existing_letters > 0, letters, list(row)))
-        return row_num + ' ' + ' '.join(row)
-
     def __repr__(self):
         return 'row object:\n'+str(self)
 
-    def __eq__(self, other):
-        return type(other) == type(self) \
-               and str(self) \
-               + str(self.this_row_crosschecks) \
-               + str(self.this_row_cross_scores) \
-               == str(other) \
-               + str(other.this_row_crosschecks) \
-               + str(other.this_row_cross_scores)
-
-    def __hash__(self):
-        return hash(str(self)
-                    + str(self.this_row_crosschecks)
-                    + str(self.this_row_cross_scores))
+#    def debug_row_string(self):
+#        row_num = '  '
+#        if self.rank % BOARD_SIZE == 0:
+#            row = '+' + ('-' * (BOARD_SIZE - 1)) + '+'
+#        else:
+#            rank = self.rank if self.direction == Direction.HORIZONTAL else chr(64 + self.rank)
+#            row_num = ' ' * (2 - len(str(rank))) + str(rank)
+#            row = '|' + ('.' * (BOARD_SIZE - 1)) + '|'
+#            row = ''.join(np.where(self.letter_multipliers == 2, "'", list(row)))
+#            row = ''.join(np.where(self.letter_multipliers == 3, '"', list(row)))
+#            row = ''.join(np.where(self.word_multipliers == 2, '-', list(row)))
+#            row = ''.join(np.where(self.word_multipliers == 3, '=', list(row)))
+#            row = ''.join(np.where(self.hook_squares, '*', list(row)))
+#            letters = [chr(x + 64) for x in self.existing_letters]
+#            row = ''.join(np.where(self.existing_letters > 0, letters, list(row)))
+#        return row_num + ' ' + ' '.join(row)
+#
+#    def __eq__(self, other):
+#        return type(other) == type(self) \
+#               and str(self) \
+#               + str(self.this_row_crosschecks) \
+#               + str(self.this_row_cross_scores) \
+#               == str(other) \
+#               + str(other.this_row_crosschecks) \
+#               + str(other.this_row_cross_scores)
+#
+#    def __hash__(self):
+#        return hash(str(self)
+#                    + str(self.this_row_crosschecks)
+#                    + str(self.this_row_cross_scores))

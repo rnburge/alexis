@@ -1,5 +1,4 @@
 from model.bag import Bag
-from model.config import LETTER_VALUES
 from model.rack import Rack
 
 

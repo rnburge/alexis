@@ -1,5 +1,4 @@
 import random
-
 from model.config import LETTER_DISTRIBUTIONS
 
 
@@ -33,12 +32,11 @@ class Bag:
         """ fills the bag with its initial complement of tiles """
         self.bag_tiles.clear()
 
-        # note blank tile is 'A' -1 or '@'
+        # note blank tile is 'A'-1 or '@'
         for letter_ordinal in range(len(LETTER_DISTRIBUTIONS)):
             num_tiles = LETTER_DISTRIBUTIONS[letter_ordinal]
             for j in range(num_tiles):
                 self.bag_tiles.append(chr(64 + letter_ordinal))
-        random.seed(99)  # DEBUG - TAKE THIS OUT!!!!
         random.shuffle(self.bag_tiles)
 
     def __str__(self):

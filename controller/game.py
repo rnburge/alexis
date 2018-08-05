@@ -40,7 +40,7 @@ class GameController:
         print("Waiting for players")
         while None in self.players:
             print("players: " + str(self.players))
-            time.sleep(0)
+            #time.sleep(0)
 
         # set start player
         random.shuffle(self.players)
@@ -51,12 +51,16 @@ class GameController:
         self.update_players()
         self.game_state = GameState.FIRST_MOVE
 
-        for player in self.players:
+        for i in range(len(self.players)):
             while self.game_state is not GameState.ENDED:
                 self.wait_for_move()
 
         self.adjust_final_scores()
-        print("Game ended")
+        print("Game ended:")
+        print("Final scores:\n")
+        for player in self.players:
+            print(player.name + " scored "
+                 + str(player.score))
 
     def wait_for_move(self):
         move = None
@@ -66,6 +70,7 @@ class GameController:
                 move = self.active_player.get_starting_move()
                 try:
                     self.validator.is_valid(move)
+                    self.game_state = GameState.RUNNING
                 except MoveValidationError:
                     continue
 
@@ -151,6 +156,8 @@ class GameController:
         self.active_player.score += move.score
         self.active_player.pass_counter = 0  # reset consecutive passes
         self.active_player.rack.replenish_tiles()
+        if not self.active_player.rack:
+            self.game_state = GameState.ENDED
 
     def adjust_final_scores(self):
         # adjusts final scores based on letters left in rack

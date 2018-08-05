@@ -80,11 +80,10 @@ class Move:
             col = self.row.rank
 
         letters = ''.join([str(t) for t in self.tiles])
-        word = self.row.word_at(self.start_index)
+
         return "Move: " + chr(64+col) + str(row) + ", " \
                + str(self.direction) \
                + ", tiles: " + letters \
-               + ", forms word: " + word \
                + ", score: " + str(self.score)
 
     def __repr__(self):

@@ -13,6 +13,7 @@ class Lexicon:
         """ Create a new lexicon """
         self.word_list = CompletionDAWG()
         self.word_list.load(os.path.join(sys.path[0], 'csw.dawg'))
+        self.reverse_list = CompletionDAWG(sorted([word[::-1] for word in self.list_words()]))
 
     def contains(self, word: str):
         """ Returns True if the supplied word is in the lexicon """
@@ -24,6 +25,10 @@ class Lexicon:
 
     def contains_prefix(self, prefix: str):
         return len(self.starts_with(prefix)) > 1
+
+    def contains_suffix(self, suffix: str):
+        # see if the reverse of the suffix is a prefix in the reversed wordlist:
+        return len(self.reverse_list.keys(suffix[::-1].upper())) > 1
 
     def contains_word_or_prefix(self, prefix):
         return len(self.starts_with(prefix)) > 0

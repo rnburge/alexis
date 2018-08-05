@@ -1,3 +1,5 @@
+import random
+
 from controller.game import GameController
 from view.consolegui import ConsoleGui
 from model.humanplayer import HumanPlayer
@@ -8,8 +10,9 @@ from model.bag import Bag
 
 def main(args=None):
     """The main routine."""
-
+# 42 crashes
     players = [None, None]
+    #random.seed(42)
     bag = Bag()
     game = GameController(players, bag)
     gui = ConsoleGui(game)
