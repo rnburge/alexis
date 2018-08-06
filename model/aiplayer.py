@@ -1,3 +1,5 @@
+import queue
+import threading
 import time
 from copy import deepcopy
 from threading import Thread
@@ -27,7 +29,7 @@ class AiPlayer(Player):
         super().__init__(game.bag, gui, name)
 
     def get_starting_move(self):
-        return self.get_move()
+        # return self.get_move()
         # only need to consider one starting row (column would just be a transpose):
         row = deepcopy(self.board.get_row(8, Direction.HORIZONTAL))
         
@@ -36,7 +38,13 @@ class AiPlayer(Player):
         if '@' in self.rack:
             self.check_blank_permutations()
 
-        return self.best_move(possible_moves)
+        move = self.best_move(possible_moves)
+
+        # reset row so it's a reference to the actual board:
+        if move.row:
+            move.row = self.board.get_row(move.row.rank, move.row.direction)
+
+        return move
 
         # reset row so it doesn't already contain played tiles:
         #if move.row:
@@ -48,7 +56,7 @@ class AiPlayer(Player):
         possible_moves = self.generate_all_moves()
         move = self.best_move(possible_moves)
 
-        # reset row so it doesn't already contain played tiles:
+        # reset row so it's a reference to the actual board:
         if move.row:
             move.row = self.board.get_row(move.row.rank, move.row.direction)
         return move
@@ -56,6 +64,7 @@ class AiPlayer(Player):
     def generate_all_moves(self):
         """ returns a list of all possible moves """
         valid_moves = []
+        #row_queue = queue.Queue()
 
         # grab a list of all the rows which have start squares/hooks in them:
         rows_to_consider = \
@@ -69,9 +78,8 @@ class AiPlayer(Player):
              for i in range(1, BOARD_SIZE)
              if self.board.hook_squares[:, i].any()])
 
-        # rows are independent of each other, but share some squares with columns,
-        # so we can consider all rows at once, and all columns at once, but not the
-        # two together:
+        #for row in rows_to_consider:
+        #    row_queue.put(row)
 
         # make list of lists of possible moves, each index will be list from a different thread
         moves = np.full(len(rows_to_consider), None)
@@ -89,10 +97,11 @@ class AiPlayer(Player):
         valid_moves.extend(itertools.chain.from_iterable(moves))
 
         # DEBUG:
-        # print(str(valid_moves))
+        print(str(valid_moves))
 
         # DEBUG
-        # print("*** moving on ***")
+        print("*** moving on ***")
+        print(threading.get_ident())
 
         if '@' in self.rack:
             self.check_blank_permutations()
@@ -114,7 +123,7 @@ class AiPlayer(Player):
             self.rack.get_tiles(''.join([str(t) for t in best_move.tiles]))
 
         # DEBUG:
-        #print(self.name+": Best move is: "+str(best_move))  # DEBUG
+        print(self.name+": Best move is: "+str(best_move))  # DEBUG
 
         return best_move
 

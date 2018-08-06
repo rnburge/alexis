@@ -34,13 +34,15 @@ class GameController:
         self.lexicon = Lexicon()
         self.validator = MoveValidator(self.lexicon, self.board)
         self.game_state = GameState.PENDING
+        self.record_of_moves = {}
+        self.move_number = 0
 
     def start_game(self):
         # check if all players are ready
         print("Waiting for players")
         while None in self.players:
             print("players: " + str(self.players))
-            #time.sleep(0)
+            # time.sleep(0)
 
         # set start player
         random.shuffle(self.players)
@@ -51,18 +53,26 @@ class GameController:
         self.update_players()
         self.game_state = GameState.FIRST_MOVE
 
-        for i in range(len(self.players)):
-            while self.game_state is not GameState.ENDED:
-                self.wait_for_move()
+        while self.game_state is GameState.FIRST_MOVE:
+            self.wait_for_first_move()
+
+        while self.game_state is not GameState.ENDED:
+            self.wait_for_move()
 
         self.adjust_final_scores()
+
         print("Game ended:")
         print("Final scores:\n")
+
         for player in self.players:
             print(player.name + " scored "
-                 + str(player.score))
+                  + str(player.score))
 
-    def wait_for_move(self):
+        print("\nMove list:")
+        for key in self.record_of_moves:
+            print("Move " + str(key) + ": " + str(self.record_of_moves[key][0] + "\n" + str(self.record_of_moves[key][1]) + "\n" + str(self.record_of_moves[key][2]) + "\n" + str(self.record_of_moves[key][3]) + "\n" + str(self.record_of_moves[key][4])))
+
+    def wait_for_first_move(self):
         move = None
 
         try:
@@ -70,18 +80,29 @@ class GameController:
                 move = self.active_player.get_starting_move()
                 try:
                     self.validator.is_valid(move)
-                    self.game_state = GameState.RUNNING
                 except MoveValidationError:
                     continue
 
-                if move.direction is not Direction.NOT_APPLICABLE:
-                    self.game_state = GameState.RUNNING
+            if move.direction is not Direction.NOT_APPLICABLE:
+                self.game_state = GameState.RUNNING
 
-                    if self.game_state is not GameState.ENDED:
-                        self.execute_move(move)
-                        self.change_active_player()
-                        self.update_players()
+            if self.game_state is not GameState.ENDED:
+                self.execute_move(move)
+                self.change_active_player()
+                self.update_players()
 
+        except MoveValidationError as ex:
+            print("Move invalid: " + str(ex))
+            self.clean_up_invalid_move(move)
+            return
+
+        if move.direction is not Direction.NOT_APPLICABLE:
+            self.game_state = GameState.RUNNING
+
+    def wait_for_move(self):
+        move = None
+
+        try:
             while self.game_state is not GameState.ENDED and (move is None or not self.validator.is_valid(move)):
                 move = self.active_player.get_move()
                 try:
@@ -95,7 +116,7 @@ class GameController:
                 self.update_players()
 
         except MoveValidationError as ex:
-            print("Move invalid: "+str(ex))
+            print("Move invalid: " + str(ex))
             self.clean_up_invalid_move(move)
             return
 
@@ -118,6 +139,10 @@ class GameController:
         """ execute a previously validated move.
         :param move: the move to be executed
         """
+        name = self.active_player.name
+        rack_leave = str(self.active_player.rack)
+        word = move.row.word_at(move.start_index)
+
         if move.direction == Direction.NOT_APPLICABLE:
             if not move.tiles:
                 self.execute_passing_move()
@@ -125,7 +150,9 @@ class GameController:
                 self.execute_tile_exchange_move(move)
         else:
             self.execute_standard_move(move)
-            return
+
+        self.move_number += 1
+        self.record_of_moves[self.move_number] = (name, rack_leave, word, move)
 
     def execute_tile_exchange_move(self, move):
         new_tiles = self.bag.get_tiles(len(move.tiles))
@@ -166,18 +193,26 @@ class GameController:
 
         # deduct the value of any tiles left from each player's hand
         for player in self.players:
-            this_player_remaining_tiles = player.rack.score_of_remaining_tiles()
-            player.score -= this_player_remaining_tiles
-            adjustment += this_player_remaining_tiles
+            remaining_tile_score = player.rack.score_of_remaining_tiles()
+            self.move_number += 1
+            self.record_of_moves[self.move_number] = \
+                (player.name, player.rack, "n/a",
+                 "Final score adjustment: -" + str(remaining_tile_score))
+            player.score -= remaining_tile_score
+            adjustment += remaining_tile_score
 
         # if the last player played out,
         # add the value of everyone else's tiles to their score
         if len(self.active_player.rack) == 0:
             self.active_player.score += adjustment
+            self.move_number += 1
+            self.record_of_moves[self.move_number] = \
+                (self.active_player.name, (self.active_player.rack,
+                                           "n/a", "Final score adjustment: +"
+                                           + str(adjustment)))
 
     def clean_up_invalid_move(self, move: Move):
         try:
             self.active_player.rack.add_tiles(move.tiles)
         except AttributeError:
             pass
-

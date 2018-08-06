@@ -19,6 +19,12 @@ class Player:
         """
         raise NotImplementedError
 
+    def get_starting_move(self):
+        """ Get the player to submit an attempted move.
+            :return the prospective move the player has entered through the GUI.
+        """
+        raise NotImplementedError
+
     def notify_move_executed(self):
         """ Executed after the game controller indicates a move has been played
             (either by this player or an opponent), so that this player client knows
