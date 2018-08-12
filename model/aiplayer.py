@@ -78,9 +78,6 @@ class AiPlayer(Player):
              for i in range(1, BOARD_SIZE)
              if self.board.hook_squares[:, i].any()])
 
-        #for row in rows_to_consider:
-        #    row_queue.put(row)
-
         # make list of lists of possible moves, each index will be list from a different thread
         moves = np.full(len(rows_to_consider), None)
         # to keep track of thread references:
@@ -93,8 +90,17 @@ class AiPlayer(Player):
             thread.start()
         # wait for all threads to finish:
         [t.join() for t in row_threads]
+
         #    concatenate all move lists from all threads
-        valid_moves.extend(itertools.chain.from_iterable(moves))
+        [valid_moves.extend(moves[i]) for i in range(len(rows_to_consider))]
+
+        # now add all combinations of pass and exchange moves by generating all combinations of rack
+        # letters of any length, from 0 tiles up to however many is in the rack:
+        tile_combos = [
+            Move(None, None,list(i)) for i in set([x for l in range(0, len(self.rack))
+                                                   for x in itertools.combinations(self.rack.rack_tiles, l)])
+        ]
+        valid_moves.extend(tile_combos)
 
         # DEBUG:
         print(str(valid_moves))
@@ -160,12 +166,15 @@ class AiPlayer(Player):
                     new_move.played_squares = np.where(played_tiles)[0]
                     new_move.calculate_score()
                     #DEBUG:
-                    #print(self.name+": Considering move: "+str(new_move)+" move.direction="+str(new_move.direction))
+                    #print(self.name+": Considering move: "+str(new_move))
                     valid_moves.append(new_move)
 
-                if len(rack) > 0:
-                    valid_moves.extend(self.extend_right(index, played_tiles, row, rack))
+                if len(rack) > 0: # if we still have tiles left
+                    # try extending into the next square on the left
                     valid_moves.extend(self.extend_left(index, played_tiles, row, rack))
+                    # and if we've made the start of a word yet, try extending that to the right
+                    if self.game.lexicon.contains_prefix(row.word_at(index)):
+                        valid_moves.extend(self.extend_right(index, played_tiles, row, rack))
 
                 # return the tile:
 
@@ -184,22 +193,23 @@ class AiPlayer(Player):
 
     def extend_right(self, index, played_tiles, row, rack: Rack):
         valid_moves = []
-        if self.game.lexicon.contains_prefix(row.word_at(index)):
-            if row.empty_squares(index + 1).any():
-                next_empty_square = row.empty_squares(index + 1)[0]
-                valid_moves.extend(self.play_on_square(row, next_empty_square, played_tiles, rack))
+
+        if row.empty_squares(index + 1).any():
+            next_empty_square = row.empty_squares(index + 1)[0]
+            valid_moves.extend(self.play_on_square(row, next_empty_square, played_tiles, rack))
         return valid_moves
 
     def extend_left(self, index, played_tiles, row, rack: Rack):
         valid_moves = []
-        if self.game.lexicon.contains_suffix(row.word_at(index)):
-            # if there's still a blank left in this row somewhere to the left:
-            if [square for square in row.empty_squares() if square < index]:
-                # then mark that next empty square as the one to play a tile in next:
-                next_empty_square = [square for square in row.empty_squares() if square < index][-1]
-                # if that square happens to be a hook, we'll have already formed all the words extending from it:
-                if not row.hook_squares[next_empty_square]:
-                    valid_moves.extend(self.play_on_square(row, next_empty_square, played_tiles, rack))
+        # if self.game.lexicon.contains_suffix(row.word_at(index)):
+
+        # if there's still a blank left in this row somewhere to the left:
+        if [square for square in row.empty_squares() if square < index]:
+            # then mark that next empty square as the one to play a tile in next:
+            next_empty_square = [square for square in row.empty_squares() if square < index][-1]
+            # if that square happens to be a hook, we'll have already formed all the words extending from it:
+            if not row.hook_squares[next_empty_square]:
+                valid_moves.extend(self.play_on_square(row, next_empty_square, played_tiles, rack))
         return valid_moves
 
     @staticmethod

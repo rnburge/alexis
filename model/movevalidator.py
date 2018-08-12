@@ -115,6 +115,10 @@ class MoveValidator:
         move.row.letter_multipliers[move.played_squares] = 1
         move.row.word_multipliers[move.played_squares] = 1
 
+        # change crosschecks to all true so we don't have to filter them out when checking new words:
+        move.row.this_row_crosschecks[move.played_squares] = (1 << 32) - 1
+        move.row.orthogonal_column_crosschecks[move.played_squares] = (1 << 32) - 1
+
     @staticmethod
     def has_valid_hook(row, played_squares):
         return any(row.hook_squares[played_squares])

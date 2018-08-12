@@ -23,15 +23,17 @@ class Move:
         self.tiles = tiles
         self.is_valid = None
 
+        # score will be None when not yet calculated:
+        self.score = None
+
         if not row:
             self.direction = Direction.NOT_APPLICABLE
             self.played_squares = None
+            self.score = 0
         else:
             self.direction = self.row.direction
             self.played_squares = row.empty_squares(start_index)[:len(tiles)]
 
-        # score will be None when not yet calculated:
-        self.score = None
 
     def cross_direction(self):
         """ :return: the direction orthogonal to the move's direction of play """
@@ -69,8 +71,11 @@ class Move:
         # gets played and not removed.
 
     def __str__(self):
+
+        letters = ''.join([str(t) for t in self.tiles]) if self.tiles else None
+
         if self.direction == Direction.NOT_APPLICABLE:
-            return "Move: Exchange " + str(self.tiles) if self.tiles else "Move: pass"
+            return "Move: Exchange " + letters if self.tiles else "Move: pass"
 
         if self.direction == Direction.HORIZONTAL:
             row = self.row.rank
@@ -78,8 +83,6 @@ class Move:
         else:
             row = self.start_index
             col = self.row.rank
-
-        letters = ''.join([str(t) for t in self.tiles])
 
         return "Move: " + chr(64+col) + str(row) + ", " \
                + str(self.direction) \

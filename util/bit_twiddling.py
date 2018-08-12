@@ -2,8 +2,9 @@ import numpy as np
 
 
 def read_bit(x: int, place: int):
-    """ return: True if the bit of x at 'place' is set to 1."""
-    bit_mask = 1 << place
+    """ return: True if the bit of x at 'place' is set to 1.
+    (modulus shifts lowercase blanks back to uppercase"""
+    bit_mask = 1 << place % 32
     return (x & bit_mask) != 0
 
 

@@ -1,5 +1,4 @@
 from enum import Enum
-import time
 import random
 from model.board import GameBoard
 from model.bag import Bag
@@ -70,7 +69,14 @@ class GameController:
 
         print("\nMove list:")
         for key in self.record_of_moves:
-            print("Move " + str(key) + ": " + str(self.record_of_moves[key][0] + "\n" + str(self.record_of_moves[key][1]) + "\n" + str(self.record_of_moves[key][2]) + "\n" + str(self.record_of_moves[key][3]) + "\n" + str(self.record_of_moves[key][4])))
+            print("Move " + str(key) + ": "
+                  + str(self.record_of_moves[key][0]
+                        + " - rack leave: "
+                        + str(self.record_of_moves[key][1])
+                        + ", made word: "
+                        + str(self.record_of_moves[key][2])
+                        + " - "
+                        + str(self.record_of_moves[key][3])))
 
     def wait_for_first_move(self):
         move = None
@@ -107,7 +113,8 @@ class GameController:
                 move = self.active_player.get_move()
                 try:
                     self.validator.is_valid(move)
-                except MoveValidationError:
+                except MoveValidationError as ex:
+                    print("something went wrong: " + str(ex))
                     continue
 
             if self.game_state is not GameState.ENDED:
@@ -140,7 +147,7 @@ class GameController:
         :param move: the move to be executed
         """
         name = self.active_player.name
-        rack_leave = str(self.active_player.rack)
+        rack_leave = str(self.active_player.rack) if self.active_player.rack else '-'
         word = move.row.word_at(move.start_index)
 
         if move.direction == Direction.NOT_APPLICABLE:
@@ -192,7 +199,12 @@ class GameController:
         adjustment = 0
 
         # deduct the value of any tiles left from each player's hand
+        player_who_played_out = None
+
         for player in self.players:
+            if len(player.rack) == 0:
+                player_who_played_out = player
+                continue
             remaining_tile_score = player.rack.score_of_remaining_tiles()
             self.move_number += 1
             self.record_of_moves[self.move_number] = \
@@ -203,13 +215,12 @@ class GameController:
 
         # if the last player played out,
         # add the value of everyone else's tiles to their score
-        if len(self.active_player.rack) == 0:
-            self.active_player.score += adjustment
+        if player_who_played_out:
+            player_who_played_out.score += adjustment
             self.move_number += 1
             self.record_of_moves[self.move_number] = \
-                (self.active_player.name, (self.active_player.rack,
-                                           "n/a", "Final score adjustment: +"
-                                           + str(adjustment)))
+                (player_who_played_out.name,
+                 player_who_played_out.rack, "n/a", "Final score adjustment: +" + str(adjustment))
 
     def clean_up_invalid_move(self, move: Move):
         try:
