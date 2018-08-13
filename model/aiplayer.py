@@ -1,6 +1,3 @@
-import queue
-import threading
-import time
 from copy import deepcopy
 from threading import Thread
 
@@ -11,7 +8,7 @@ from model.rack import Rack
 from util.bit_twiddling import read_bit
 
 from controller.game import GameController
-from model.config import Direction, BOARD_SIZE, LETTER_VALUES
+from model.config import Direction, BOARD_SIZE
 from model.player import Player
 from model.row import Row
 from view.view import View
@@ -36,7 +33,7 @@ class AiPlayer(Player):
         possible_moves = self.play_on_square(row, 8, [None] * 16, self.rack)
 
         if '@' in self.rack:
-            self.check_blank_permutations()
+            self.check_blank_permutations(possible_moves)
 
         move = self.best_move(possible_moves)
 
@@ -103,14 +100,14 @@ class AiPlayer(Player):
         valid_moves.extend(tile_combos)
 
         # DEBUG:
-        print(str(valid_moves))
+        # print(str(valid_moves))
 
         # DEBUG
-        print("*** moving on ***")
-        print(threading.get_ident())
+        # ("*** moving on ***")
+        # print(threading.get_ident())
 
         if '@' in self.rack:
-            self.check_blank_permutations()
+            self.check_blank_permutations(valid_moves)
 
         return valid_moves
 
@@ -129,7 +126,7 @@ class AiPlayer(Player):
             self.rack.get_tiles(''.join([str(t) for t in best_move.tiles]))
 
         # DEBUG:
-        print(self.name+": Best move is: "+str(best_move))  # DEBUG
+        # print(self.name+": Best move is: "+str(best_move))  # DEBUG
 
         return best_move
 
@@ -170,8 +167,9 @@ class AiPlayer(Player):
                     valid_moves.append(new_move)
 
                 if len(rack) > 0: # if we still have tiles left
-                    # try extending into the next square on the left
-                    valid_moves.extend(self.extend_left(index, played_tiles, row, rack))
+                    # try extending into the next square on the left, only if we've made a middle part of a real word:
+                    if self.game.lexicon.contains_infix(row.word_at(index)):
+                        valid_moves.extend(self.extend_left(index, played_tiles, row, rack))
                     # and if we've made the start of a word yet, try extending that to the right
                     if self.game.lexicon.contains_prefix(row.word_at(index)):
                         valid_moves.extend(self.extend_right(index, played_tiles, row, rack))
@@ -226,17 +224,17 @@ class AiPlayer(Player):
                 for j in range(0, len(move.tiles)):
                     if j != i and move.tiles[i].upper() == move.tiles[j]:
                         reordered_tiles = list(move.tiles)
-                        reordered_tiles[i],reordered_tiles[j] = reordered_tiles[j], reordered_tiles[i]
-                        moves.append(Move(move.row, move.is_valid, reordered_tiles))
+                        reordered_tiles[i], reordered_tiles[j] = reordered_tiles[j], reordered_tiles[i]
+                        moves.append(Move(move.row, move.start_index, reordered_tiles))
+                        moves[-1].calculate_score()
         return moves
 
-    def check_blank_permutations(self):
+    def check_blank_permutations(self, possible_moves):
         """ this needs to see if any moves use the same letter on a blank as an existing
         character, and if so generate extra moves by swapping them """
-        pass
-        # if any(type(tile) is BlankTile for tile in played_tiles):
-        #    # check for playing the blank in different spaces:
-        #    valid_moves.extend(self.permute_blanks(new_move))
-        #else:
-        #pass
+        pass#
+        #for move in possible_moves:
+        #    if any(tile for tile in move.tiles if tile.islower()):
+        #        # check for playing the blank in different spaces:#
+        #        possible_moves.extend(self.permute_blanks(move))
 
