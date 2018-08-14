@@ -30,14 +30,36 @@ class Rack:
 
     def get_tile(self, letter: str):
         """ Removes and returns the specified letter from the rack, raises a ValueError if not present """
-        if letter in self:
+        if letter in self.rack_tiles:
             return self.rack_tiles.pop(str(self).index(letter))
+        elif letter.lower() in self.rack_tiles:
+            return self.rack_tiles.pop(str(self).index(letter.lower()))
         elif '@' in self:
             self.rack_tiles.pop(str(self).index('@'))
             tile = letter.lower()
             return tile
         else:
             raise ValueError("No such letter in rack")
+
+    def reset_blanks(self):
+        for i in range(len(self)):
+            if self.rack_tiles[i].islower():
+                self.rack_tiles[i] = '@'
+
+    def assign_blanks(self):
+        while '@' in self:
+            self.get_tile('@')
+            vowels = 'EAOIU'
+            consonants = 'SRTNLDGBMPHWFYCVKXJZQ'
+            num_vowels = len([tile for tile in self.rack_tiles if tile in vowels])
+            num_consonants = len([tile for tile in self.rack_tiles if tile in consonants])
+
+            if num_consonants <= num_vowels:
+                letter = [letter for letter in consonants if letter not in self][0].lower()
+            else:
+                letter = [letter for letter in vowels if letter not in self][0].lower()
+
+            self.add_tile(letter)
 
     def __len__(self):
         return len(self.rack_tiles)
@@ -58,12 +80,12 @@ class Rack:
 
     def contains(self, possible_contents: str, tiles_in_rack: str):
         if len(possible_contents) == 1:
-            return possible_contents in tiles_in_rack
+            return possible_contents.upper() in tiles_in_rack.upper()
         elif '@' not in tiles_in_rack:
-            if not set(possible_contents).issubset(set(str(self))):
+            if not set(possible_contents.upper()).issubset(set(str(self).upper())):
                 return False
             else:
-                return not Counter(possible_contents) - Counter(str(self))
+                return not Counter(possible_contents.upper()) - Counter(str(self).upper())
         else:
             # we have a blank
             # ditch a blank from hand we're checking:
@@ -76,7 +98,7 @@ class Rack:
             # but missing one letter, then we see if any of them are contained
             # in remaining tiles (having two blanks is handled recursively):
             return any(
-                [self.contains(''.join(contents[np.arange(len(contents)) != i]), tiles_in_rack)
+                [self.contains(''.join(contents[np.arange(len(contents)) != i]).upper, tiles_in_rack)
                  for i in range(len(contents))]
             )
 

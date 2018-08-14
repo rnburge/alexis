@@ -63,6 +63,11 @@ class AiPlayer(Player):
         valid_moves = []
         #row_queue = queue.Queue()
 
+        self.rack.reset_blanks()
+
+        if '@' in self.rack:
+            self.rack.assign_blanks()
+
         # grab a list of all the rows which have start squares/hooks in them:
         rows_to_consider = \
             [self.board.get_row(i, Direction.HORIZONTAL)
@@ -75,6 +80,10 @@ class AiPlayer(Player):
              for i in range(1, BOARD_SIZE)
              if self.board.hook_squares[:, i].any()])
 
+        # rows are independent of each other, but share some squares with columns,
+        # so we can consider all rows at once, and all columns too provided we
+        # act on copies of the rows. We can consider each row/column in its own thread:
+
         # make list of lists of possible moves, each index will be list from a different thread
         moves = np.full(len(rows_to_consider), None)
         # to keep track of thread references:
@@ -82,7 +91,7 @@ class AiPlayer(Player):
         # consider each row in separate thread:
         for i in range(len(rows_to_consider)):
             row = rows_to_consider[i]
-            thread = Thread(target=self.get_moves, args=(moves, i, row))
+            thread = Thread(target=self.get_moves_for_row, args=(moves, i, row))
             row_threads.append(thread)
             thread.start()
         # wait for all threads to finish:
@@ -111,10 +120,17 @@ class AiPlayer(Player):
 
         return valid_moves
 
-    def get_moves(self, moves, i, row):
-        moves[i] = self.moves_for_row(deepcopy(row), deepcopy(self.rack))
-        # **DEBUG** :
-        # print("added move "+str(i))
+    def get_moves_for_row(self, moves, i, row):
+        """ gets all valid moves playable in the argument row
+        and places them at the given index of the argument list of move lists"""
+        row = deepcopy(row)
+        rack = deepcopy(self.rack)
+
+        hooks = np.nonzero(row.hook_squares)[0]
+        moves[i] = []
+
+        for hook in hooks:
+            moves[i].extend(self.play_on_square(row, hook, [None] * 16, rack))
 
     def best_move(self, potential_moves):
         """ This returns whatever the AI considers the best move to be out of all the moves in the argument list """
@@ -130,17 +146,6 @@ class AiPlayer(Player):
 
         return best_move
 
-    def moves_for_row(self, row: Row, rack: Rack):
-        """ returns all valid moves playable in the argument row """
-
-        hooks = np.nonzero(row.hook_squares)[0]
-        valid_moves = []
-
-        for hook in hooks:
-            valid_moves.extend(self.play_on_square(row, hook, [None] * 16, rack))
-
-        return valid_moves
-
     def play_on_square(self, row, index, played_tiles, rack: Rack):
 
         valid_moves = []
@@ -151,42 +156,35 @@ class AiPlayer(Player):
         # filter that to ones we can actually use with tiles from our rack (all of them if we have a blank!)
         valid_tiles = valid_cross_plays if '@' in rack else [x for x in valid_cross_plays if x in rack]
 
-        try:
-            # for each of the playable tiles, stick it in the square
-            for tile_letter in valid_tiles:
-                tile = rack.get_tile(tile_letter)
-                played_tiles[index] = tile
-                row.existing_letters[index] = ord(tile)-64
+        # for each of the playable tiles, stick it in the square
+        for tile_letter in valid_tiles:
+            tile = rack.get_tile(tile_letter)
+            played_tiles[index] = tile
+            row.existing_letters[index] = ord(tile)-64
 
-                if row.word_at(index) in self.game.lexicon:
-                    new_move = Move(row, np.where(played_tiles)[0][0], [tile for tile in played_tiles if tile])
-                    new_move.played_squares = np.where(played_tiles)[0]
-                    new_move.calculate_score()
-                    #DEBUG:
-                    #print(self.name+": Considering move: "+str(new_move))
-                    valid_moves.append(new_move)
+            if row.word_at(index) in self.game.lexicon:
+                new_move = Move(row, np.where(played_tiles)[0][0], [tile for tile in played_tiles if tile])
+                new_move.played_squares = np.where(played_tiles)[0]
+                new_move.calculate_score()
+                #DEBUG:
+                #print(self.name+": Considering move: "+str(new_move))
+                valid_moves.append(new_move)
 
-                if len(rack) > 0: # if we still have tiles left
-                    # try extending into the next square on the left, only if we've made a middle part of a real word:
-                    if self.game.lexicon.contains_infix(row.word_at(index)):
-                        valid_moves.extend(self.extend_left(index, played_tiles, row, rack))
-                    # and if we've made the start of a word yet, try extending that to the right
-                    if self.game.lexicon.contains_prefix(row.word_at(index)):
-                        valid_moves.extend(self.extend_right(index, played_tiles, row, rack))
+            if len(rack) > 0: # if we still have tiles left
+                # try extending into the next square on the left, only if we've made a middle part of a real word:
+                if self.game.lexicon.contains_infix(row.word_at(index)):
+                    valid_moves.extend(self.extend_left(index, played_tiles, row, rack))
+                # and if we've made the start of a word yet, try extending that to the right
+                if self.game.lexicon.contains_prefix(row.word_at(index)):
+                    valid_moves.extend(self.extend_right(index, played_tiles, row, rack))
 
-                # return the tile:
+            # return the tile to the rack
+            rack.add_tile(tile)
+            # set board square back to no letter
+            row.existing_letters[index] = 0
+            # remove tile from list of played tiles:
+            played_tiles[index] = None
 
-                # set any blank back to blank
-                if ord(tile) > ord('Z'):
-                    tile = '@'
-                # put tile back in rack
-                rack.add_tile(tile)
-                # set board square back to no letter
-                row.existing_letters[index] = 0
-                # remove tile from list of played tiles:
-                played_tiles[index] = None
-        except MoveValidationError as err:
-            pass
         return valid_moves
 
     def extend_right(self, index, played_tiles, row, rack: Rack):

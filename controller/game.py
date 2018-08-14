@@ -148,15 +148,16 @@ class GameController:
         """
         name = self.active_player.name
         rack_leave = str(self.active_player.rack) if self.active_player.rack else '-'
-        word = move.row.word_at(move.start_index)
 
         if move.direction == Direction.NOT_APPLICABLE:
             if not move.tiles:
                 self.execute_passing_move()
             else:  # we must be swapping letters
                 self.execute_tile_exchange_move(move)
+            word = '-'
         else:
             self.execute_standard_move(move)
+            word = move.row.word_at(move.start_index)
 
         self.move_number += 1
         self.record_of_moves[self.move_number] = (name, rack_leave, word, move)
@@ -208,7 +209,7 @@ class GameController:
             remaining_tile_score = player.rack.score_of_remaining_tiles()
             self.move_number += 1
             self.record_of_moves[self.move_number] = \
-                (player.name, player.rack, "n/a",
+                (player.name, player.rack if player.rack else '-', "n/a",
                  "Final score adjustment: -" + str(remaining_tile_score))
             player.score -= remaining_tile_score
             adjustment += remaining_tile_score
