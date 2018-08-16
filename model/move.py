@@ -90,3 +90,9 @@ class Move:
 
     def __repr__(self):
         return 'Move object:\n'+str(self)
+
+    def __hash__(self):
+        return hash(str(self))
+
+    def __eq__(self, other):
+        return str(self) == str(other)

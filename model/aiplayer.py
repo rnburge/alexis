@@ -118,6 +118,8 @@ class AiPlayer(Player):
         if '@' in self.rack:
             self.check_blank_permutations(valid_moves)
 
+        valid_moves = list(set(valid_moves))
+
         return valid_moves
 
     def get_moves_for_row(self, moves, i, row):
@@ -200,9 +202,10 @@ class AiPlayer(Player):
         # if self.game.lexicon.contains_suffix(row.word_at(index)):
 
         # if there's still a blank left in this row somewhere to the left:
-        if [square for square in row.empty_squares() if square < index]:
+        remaining_empties = [square for square in row.empty_squares() if square < index]
+        if remaining_empties:
             # then mark that next empty square as the one to play a tile in next:
-            next_empty_square = [square for square in row.empty_squares() if square < index][-1]
+            next_empty_square = remaining_empties[-1]
             # if that square happens to be a hook, we'll have already formed all the words extending from it:
             if not row.hook_squares[next_empty_square]:
                 valid_moves.extend(self.play_on_square(row, next_empty_square, played_tiles, rack))
