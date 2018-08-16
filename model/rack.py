@@ -79,7 +79,7 @@ class Rack:
         self.add_tiles(self.bag.get_tiles(tiles_needed))
 
     def contains(self, possible_contents: str, tiles_in_rack: str):
-        if len(possible_contents) == 1:
+        if 1 == len(possible_contents):
             return possible_contents.upper() in tiles_in_rack.upper()
         elif '@' not in tiles_in_rack:
             if not set(possible_contents.upper()).issubset(set(str(self).upper())):
@@ -98,7 +98,7 @@ class Rack:
             # but missing one letter, then we see if any of them are contained
             # in remaining tiles (having two blanks is handled recursively):
             return any(
-                [self.contains(''.join(contents[np.arange(len(contents)) != i]).upper, tiles_in_rack)
+                [self.contains(''.join(contents[np.arange(len(contents)) != i]).upper(), tiles_in_rack)
                  for i in range(len(contents))]
             )
 

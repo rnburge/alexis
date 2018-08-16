@@ -34,7 +34,6 @@ class Move:
             self.direction = self.row.direction
             self.played_squares = row.empty_squares(start_index)[:len(tiles)]
 
-
     def cross_direction(self):
         """ :return: the direction orthogonal to the move's direction of play """
         if self.direction == Direction.VERTICAL:

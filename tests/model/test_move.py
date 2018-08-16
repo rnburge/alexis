@@ -11,3 +11,6 @@ def test_cross_direction():
 
 def test_str():
     pass
+
+def test_calculate_score():
+    move = guiMove('D8H')

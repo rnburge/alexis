@@ -7,12 +7,10 @@ from model.aiplayer import AiPlayer
 from model.bag import Bag
 
 
-
 def main(args=None):
-    """The main routine."""
-# 42 crashes
+    """The main bootstrapping routine."""
+
     players = [None, None]
-    #random.seed(42)
     bag = Bag()
     game = GameController(players, bag)
     gui = ConsoleGui(game)
