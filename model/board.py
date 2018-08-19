@@ -155,17 +155,6 @@ class GameBoard:
         """
 
         if direction == Direction.HORIZONTAL:
-            row_data = (self.hook_squares[:, rank],
-                        self.word_multipliers[:, rank],
-                        self.letter_multipliers[:, rank],
-                        self.existing_letters[:, rank],
-                        self.existing_letter_scores[:, rank],
-                        self.row_crosschecks[:, rank],
-                        self.row_cross_scores[:, rank],
-                        self.column_crosschecks[:, rank],
-                        self.column_cross_scores[:, rank])
-
-        elif direction == Direction.VERTICAL:
             row_data = (self.hook_squares[rank, :],
                         self.word_multipliers[rank, :],
                         self.letter_multipliers[rank, :],
@@ -175,6 +164,17 @@ class GameBoard:
                         self.column_cross_scores[rank, :],
                         self.row_crosschecks[rank, :],
                         self.row_cross_scores[rank, :])
+
+        elif direction == Direction.VERTICAL:
+            row_data = (self.hook_squares[:, rank],
+                        self.word_multipliers[:, rank],
+                        self.letter_multipliers[:, rank],
+                        self.existing_letters[:, rank],
+                        self.existing_letter_scores[:, rank],
+                        self.row_crosschecks[:, rank],
+                        self.row_cross_scores[:, rank],
+                        self.column_crosschecks[:, rank],
+                        self.column_cross_scores[:, rank])
         else:
             row_data = None
 

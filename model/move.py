@@ -44,6 +44,8 @@ class Move:
             return Direction.NOT_APPLICABLE
 
     def calculate_score(self):
+        # calculate score of this move (assumes tiles are already applied to row)
+
         tile_values = [(LETTER_VALUES[(ord(t)-64)] if t.isupper() else LETTER_VALUES[0]) for t in self.tiles]
         squares_in_whole_word = self.row.squares_in_word(self.start_index)
 
