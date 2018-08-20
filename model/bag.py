@@ -37,7 +37,7 @@ class Bag:
             num_tiles = LETTER_DISTRIBUTIONS[letter_ordinal]
             for j in range(num_tiles):
                 self.bag_tiles.append(chr(64 + letter_ordinal))
-        random.seed(42)
+        # random.seed(42) # DEBUG
         random.shuffle(self.bag_tiles)
 
     def __str__(self):
