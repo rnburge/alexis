@@ -18,19 +18,19 @@ gcg_path = './gcg/'
 img_path = './images/'
 
 
-def process_game(lines, k):
+def process_game(gcg_lines, game_number):
     players = [None, None]
     game = GameController(players, Bag())
     gui = ConsoleGui(game)
-    movelist = [line.split() for line in lines]
+    movelist = [line.split() for line in gcg_lines]
     player1 = AiPlayer(game, gui, movelist.pop(0)[1])
     player2 = AiPlayer(game, gui, movelist.pop(0)[1])
     game.players = [player1, player2]
     game.active_player = player1 if player1.name == movelist[0][0][1:-1] else player2
 
-    j = 0  # current move
+    current_move = 0  # current move
     while movelist:
-        j += 1
+        current_move += 1
         current_move_info = movelist.pop(0)
 
         # if there are things in brackets, they are score adjustments so we've
@@ -124,7 +124,7 @@ def process_game(lines, k):
         # add 4 randomly chosen moves:
         wrong_moves.extend(choices(alexis_moves, k=4))
 
-        for k in range(len(wrong_moves)):
+        for option in range(len(wrong_moves)):
             base_layer = copy.deepcopy(game.board.existing_letters[:-1, :-1])  # slice off last sentinel
             # set first sentinel squares to zero instead of sentinel value:
             base_layer[0, :] = 0
@@ -144,7 +144,7 @@ def process_game(lines, k):
             score_layer[0, :] = 0
             score_layer[:, 0] = 0
 
-            move = wrong_moves[k]
+            move = wrong_moves[option]
             move_tiles = move.tiles if move.tiles else []
 
             if move.direction == Direction.NOT_APPLICABLE:  # pass or exchange
@@ -175,12 +175,12 @@ def process_game(lines, k):
             img = img.resize((256, 256), Image.NEAREST)
 
             # save the image
-            img.save(img_path + 'alexis_game' + str(i).zfill(4)
-                     + '_move' + str(j).zfill(2)
-                     + '_option' + str(k + 1) + '.png')
+            img.save(img_path + 'a_g' + str(game_number).zfill(4)
+                     + '_m' + str(current_move).zfill(2)
+                     + '_option' + str(option + 1) + '.png')
 
             # add a little feedback to the console:
-            print("i,j,k:" + str((i, j, k)))
+            print(":" + str((game_number, current_move, option)))
 
         # now process the Quackle move:
         base_layer = copy.deepcopy(game.board.existing_letters[:-1, :-1])  # slice off last sentinel
@@ -233,8 +233,8 @@ def process_game(lines, k):
         img = img.resize((256, 256), Image.NEAREST)
 
         # save the image
-        img.save(img_path + 'quackle_game' + str(i).zfill(4)
-                 + '_move' + str(j).zfill(2)
+        img.save(img_path + 'q_g' + str(game_number).zfill(4)
+                 + '_m' + str(current_move).zfill(2)
                  + '_option1.png')
 
         # now do data augmentation by transposing the board:
@@ -248,9 +248,9 @@ def process_game(lines, k):
         rgb = [pixel for pixel in rgb]
         img = Image.new('RGB', (16, 16))
         img.putdata(rgb)
-        img = img.resize((256, 256), Image.NEAREST)
-        img.save(img_path + 'quackle_game' + str(i).zfill(4)
-                 + '_move' + str(j).zfill(2)
+        # img = img.resize((256, 256), Image.NEAREST)
+        img.save(img_path + 'q_q' + str(game_number).zfill(4)
+                 + '_m' + str(current_move).zfill(2)
                  + '_option2.png')
 
         # now actually execute the move to prepare the board for the next move:
@@ -272,12 +272,18 @@ def process_game(lines, k):
             game.execute_move(quackle_move)
 
 
-for i in range(205, 2567):
-    path = gcg_path + 'game_' + str(i).zfill(4) + '.gcg'
-    with open(path, 'r') as f:
-        lines = f.readlines()
-        process_game(lines, i)
+for i in range(251, 2567, 4):
+    lines = []
+    threads = []
+    for j in range(4):
+        path = gcg_path + 'game_' + str(i+j).zfill(4) + '.gcg'
+        with open(path, 'r') as f:
+            lines.append(f.readlines())
+
+    for k in range(4):
+        threads.append(Thread(target=process_game, args=(lines[k], i+k)))
+
+    [thread.start() for thread in threads]
+    [thread.join() for thread in threads]
 
 
-
-#

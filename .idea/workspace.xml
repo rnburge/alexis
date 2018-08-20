@@ -2,216 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2176df42-d937-4265-9f8a-23ee001c351f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/gcg_convert.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GCG parser.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/GCG parser.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab notebook.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Lab notebook.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/csw.dawg" beforeDir="false" afterPath="$PROJECT_DIR$/csw.dawg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0001.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0002.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0003.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0004.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0005.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0006.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0007.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0008.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0009.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0010.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0011.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0012.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0013.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0014.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0015.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0016.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0017.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0018.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0019.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0020.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0021.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0022.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0023.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0024.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0025.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0026.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0027.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0028.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0029.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0030.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0031.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0032.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0033.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0034.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0035.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0036.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0037.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0038.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0039.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0040.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0041.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0042.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0043.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0044.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0045.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0046.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0047.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0048.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0049.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0050.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0051.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0052.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0053.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0054.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0055.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0056.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0057.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0058.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0059.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0060.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0061.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0062.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0063.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0064.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0065.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0066.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0067.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0068.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0069.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0070.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0071.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0072.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0073.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0074.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0075.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0076.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0077.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0078.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0079.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0080.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0081.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0082.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0083.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0084.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0085.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0086.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0087.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0088.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0089.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0090.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0091.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0092.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0093.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0094.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0095.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0096.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0097.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0098.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0099.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0100.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0101.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0102.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0103.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0104.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0105.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0106.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0107.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0108.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0109.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0110.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0111.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0112.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0113.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0114.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0115.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0116.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0117.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0118.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0119.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0120.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0121.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0122.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0123.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0124.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0125.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0126.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0127.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0128.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0129.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0130.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0131.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0132.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0133.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0134.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0135.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0136.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0137.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0138.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0139.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0140.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0141.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0142.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0143.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0144.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0145.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0146.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0147.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0148.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0149.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0150.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0151.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0152.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0153.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0154.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0155.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0156.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0157.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0158.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0159.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0160.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0161.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0162.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0163.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0164.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0165.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0166.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0167.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0168.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0169.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0170.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0171.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0172.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0173.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0174.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0175.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0176.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0177.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0178.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0179.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0180.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0181.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0182.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0183.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0184.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0185.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0186.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0187.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0188.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0189.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0190.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0191.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0192.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0193.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0194.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0195.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0196.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0197.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0198.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0199.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0200.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0201.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0202.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0203.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gcg/game_0204.gcg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/bag.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/bag.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gcg_convert.py" beforeDir="false" afterPath="$PROJECT_DIR$/gcg_convert.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -221,120 +13,33 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/alexis$threadutils.coverage" NAME="threadutils Coverage Results" MODIFIED="1533303963371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
-    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_tile_py.coverage" NAME="py.test in test_tile.py Coverage Results" MODIFIED="1532866407266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
-    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_movevalidator_py.coverage" NAME="py.test in test_movevalidator.py Coverage Results" MODIFIED="1532866302714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
-    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_rack_py.coverage" NAME="py.test in test_rack.py Coverage Results" MODIFIED="1534375188872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
-    <SUITE FILE_PATH="coverage/alexis$alexis.coverage" NAME="alexis Coverage Results" MODIFIED="1534691446475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/alexis$py_test_in_threadutils_py.coverage" NAME="py.test in threadutils.py Coverage Results" MODIFIED="1533303721730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
-    <SUITE FILE_PATH="coverage/alexis$py_test_in_model.coverage" NAME="py.test in model Coverage Results" MODIFIED="1532261598926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
-    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_aiplayer_py.coverage" NAME="py.test in test_aiplayer.py Coverage Results" MODIFIED="1532866261124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
-    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_bag_py.coverage" NAME="py.test in test_bag.py Coverage Results" MODIFIED="1531661153769" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/alexis$gcg_convert.coverage" NAME="gcg_convert Coverage Results" MODIFIED="1534687469431" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
     <SUITE FILE_PATH="coverage/alexis$py_test_in_test_game_py.coverage" NAME="py.test in test_game.py Coverage Results" MODIFIED="1534375215276" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/controller" />
-    <SUITE FILE_PATH="coverage/alexis$gcg_convert__1_.coverage" NAME="gcg_convert (1) Coverage Results" MODIFIED="1534727082163" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/alexis$py_test_in_threadutils_py.coverage" NAME="py.test in threadutils.py Coverage Results" MODIFIED="1533303721730" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
+    <SUITE FILE_PATH="coverage/alexis$alexis.coverage" NAME="alexis Coverage Results" MODIFIED="1534691446475" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/alexis$py_test_in_test_lexicon_py.coverage" NAME="py.test in test_lexicon.py Coverage Results" MODIFIED="1532866394011" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
+    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_tile_py.coverage" NAME="py.test in test_tile.py Coverage Results" MODIFIED="1532866407266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
     <SUITE FILE_PATH="coverage/alexis$py_test_in_tests.coverage" NAME="py.test in tests Coverage Results" MODIFIED="1534375222098" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
-    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_move_py.coverage" NAME="py.test in test_move.py Coverage Results" MODIFIED="1532866400382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
     <SUITE FILE_PATH="coverage/alexis$py_test_in_test_bag_py__1_.coverage" NAME="py.test in test_bag.py (1) Coverage Results" MODIFIED="1532263231527" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
+    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_bag_py.coverage" NAME="py.test in test_bag.py Coverage Results" MODIFIED="1531661153769" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests" />
+    <SUITE FILE_PATH="coverage/alexis$py_test_in_model.coverage" NAME="py.test in model Coverage Results" MODIFIED="1532261598926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
+    <SUITE FILE_PATH="coverage/alexis$gcg_convert__1_.coverage" NAME="gcg_convert (1) Coverage Results" MODIFIED="1534761785229" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/alexis$py_test_in_test_consolegui_py.coverage" NAME="py.test in test_consolegui.py Coverage Results" MODIFIED="1534375757303" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/view" />
+    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_rack_py.coverage" NAME="py.test in test_rack.py Coverage Results" MODIFIED="1534375188872" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
+    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_move_py.coverage" NAME="py.test in test_move.py Coverage Results" MODIFIED="1532866400382" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
+    <SUITE FILE_PATH="coverage/alexis$gcg_convert.coverage" NAME="gcg_convert Coverage Results" MODIFIED="1534687469431" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
+    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_aiplayer_py.coverage" NAME="py.test in test_aiplayer.py Coverage Results" MODIFIED="1532866261124" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
+    <SUITE FILE_PATH="coverage/alexis$threadutils.coverage" NAME="threadutils Coverage Results" MODIFIED="1533303963371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/util" />
+    <SUITE FILE_PATH="coverage/alexis$py_test_in_test_movevalidator_py.coverage" NAME="py.test in test_movevalidator.py Coverage Results" MODIFIED="1532866302714" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/model" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="movevalidator.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/movevalidator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-849">
-              <caret line="67" selection-start-line="67" selection-end-line="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="consolegui.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/view/consolegui.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1598">
-              <caret line="101" selection-start-line="101" selection-end-line="101" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="rack.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/rack.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1173">
-              <caret line="72" selection-start-line="72" selection-end-line="72" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="gcg_convert.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/gcg_convert.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="501">
-              <caret line="273" lean-forward="true" selection-start-line="273" selection-end-line="273" />
+            <state relative-caret-position="256">
+              <caret line="277" column="22" lean-forward="true" selection-start-line="277" selection-start-column="22" selection-end-line="277" selection-end-column="22" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="lexicon.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/lexicon.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-145">
-              <caret line="13" column="39" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="39" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="threading.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/ProgramData/Anaconda3/Lib/threading.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="915" selection-start-line="915" selection-end-line="915" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="aiplayer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/aiplayer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="codecs.py" pinned="false" current-in-tab="false">
-        <entry file="file://C:/ProgramData/Anaconda3/Lib/codecs.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5423">
-              <caret line="319" selection-start-line="319" selection-end-line="319" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="move.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/move.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1632">
-              <caret line="99" selection-start-line="99" selection-end-line="99" />
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="43" selection-start-line="43" selection-end-line="43" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -443,6 +148,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -469,7 +175,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -664,20 +369,20 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="1176" extended-state="6" />
+    <frame x="-8" y="-8" width="1456" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32882273" />
-      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5012854" side_tool="true" visible="true" weight="0.22543353" />
+      <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5028653" side_tool="true" visible="true" weight="0.34100136" />
       <window_info anchor="bottom" id="Database Changes" order="4" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="1" weight="0.32947975" />
       <window_info anchor="bottom" id="Python Console" order="8" weight="0.23410013" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49871466" visible="true" weight="0.22543353" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49713466" visible="true" weight="0.34100136" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32882273" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48966613" visible="true" weight="0.15231362" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48966613" visible="true" weight="0.15616046" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="1" />
-      <window_info anchor="right" id="SciView" order="0" visible="true" weight="0.06748072" />
+      <window_info anchor="right" id="SciView" order="0" visible="true" weight="0.06661891" />
       <window_info id="Structure" order="1" sideWeight="0.51033384" side_tool="true" weight="0.15446559" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4993573" weight="0.34489402" />
@@ -729,19 +434,9 @@
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/gcg_convert.py</url>
-          <line>271</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/view/consolegui.py</url>
           <line>101</line>
           <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/gcg_convert.py</url>
-          <line>185</line>
-          <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/model/movevalidator.py</url>
@@ -1233,36 +928,36 @@ read_bit(move.row.this_row_crosschecks[8], move.row.existing_letters[8])</expres
     </entry>
     <entry file="file://$PROJECT_DIR$/model/movevalidator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-849">
-          <caret line="67" selection-start-line="67" selection-end-line="67" />
+        <state relative-caret-position="51">
+          <caret line="84" column="17" selection-start-line="84" selection-start-column="17" selection-end-line="84" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/aiplayer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
+        <state relative-caret-position="17">
           <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="28" />
         </state>
       </provider>
     </entry>
     <entry file="file://C:/ProgramData/Anaconda3/Lib/threading.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
+        <state relative-caret-position="15453">
           <caret line="915" selection-start-line="915" selection-end-line="915" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/lexicon.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-145">
+        <state relative-caret-position="187">
           <caret line="13" column="39" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="39" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/gcg_convert.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="501">
-          <caret line="273" lean-forward="true" selection-start-line="273" selection-end-line="273" />
+        <state relative-caret-position="256">
+          <caret line="277" column="22" lean-forward="true" selection-start-line="277" selection-start-column="22" selection-end-line="277" selection-end-column="22" />
           <folding>
             <element signature="e#0#42#0" expanded="true" />
           </folding>
