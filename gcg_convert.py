@@ -272,7 +272,7 @@ def process_game(gcg_lines, game_number):
             game.execute_move(quackle_move)
 
 
-for i in range(251, 2567, 4):
+for i in range(2112, 2567, 4):
     lines = []
     threads = []
     for j in range(4):

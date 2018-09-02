@@ -1,6 +1,7 @@
 import random
 
 from controller.game import GameController
+from model.deepaiplayer import DeepAiPlayer
 from view.consolegui import ConsoleGui
 from model.humanplayer import HumanPlayer
 from model.aiplayer import AiPlayer
@@ -15,7 +16,7 @@ def main(args=None):
     game = GameController(players, bag)
     gui = ConsoleGui(game)
     player1 = AiPlayer(game, gui, "AI Player 1")
-    player2 = AiPlayer(game, gui, "AI Player 2")
+    player2 = DeepAiPlayer(game, gui, "Deep AI Player 2")
     #player1 = HumanPlayer(bag, gui, "Player 1")
     #player2 = HumanPlayer(bag, gui, "Player 2")
     game.players = [player1, player2]

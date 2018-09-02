@@ -36,6 +36,41 @@ class GameController:
         self.record_of_moves = {}
         self.move_number = 0
 
+    def run_game(self):
+        self.start_game()
+
+        print("Game ended:")
+        print("Final scores:\n")
+
+        for player in self.players:
+            print(player.name + " scored "
+                  + str(player.score))
+
+        print("\nMove list:")
+        for key in self.record_of_moves:
+            print("Move " + str(key) + ": "
+                  + str(self.record_of_moves[key][0]
+                        + " - rack leave: "
+                        + str(self.record_of_moves[key][1])
+                        + ", made word: "
+                        + str(self.record_of_moves[key][2])
+                        + " - "
+                        + str(self.record_of_moves[key][3])))
+
+        return self.record_of_moves
+
+#    def reset(self):
+#    #    self.board = GameBoard() # fresh board object with untouched multipliers
+#        self.bag.__init__() # reinitialise bag from letter distributions
+#        for player in self.players:
+#            player.rack.rack_tiles = [] # discard any leftover tiles from last game
+#            player.rack.replenish_tiles()
+#            player.score = 0
+#            player.board = self.board
+#        self.game_state = GameState.PENDING
+#        self.record_of_moves = {}
+#        self.move_number = 0
+
     def start_game(self):
         # check if all players are ready
         print("Waiting for players")
@@ -59,24 +94,6 @@ class GameController:
             self.wait_for_move()
 
         self.adjust_final_scores()
-
-        print("Game ended:")
-        print("Final scores:\n")
-
-        for player in self.players:
-            print(player.name + " scored "
-                  + str(player.score))
-
-        print("\nMove list:")
-        for key in self.record_of_moves:
-            print("Move " + str(key) + ": "
-                  + str(self.record_of_moves[key][0]
-                        + " - rack leave: "
-                        + str(self.record_of_moves[key][1])
-                        + ", made word: "
-                        + str(self.record_of_moves[key][2])
-                        + " - "
-                        + str(self.record_of_moves[key][3])))
 
     def wait_for_first_move(self):
         move = None
@@ -161,6 +178,7 @@ class GameController:
 
         self.move_number += 1
         self.record_of_moves[self.move_number] = (name, rack_leave, word, move)
+        print(self.record_of_moves[self.move_number])
 
     def execute_tile_exchange_move(self, move):
         new_tiles = self.bag.get_tiles(len(move.tiles))
@@ -168,7 +186,7 @@ class GameController:
             self.bag.add_tiles(new_tiles)  # put drawn tiles back, we won't be using them
             raise MoveValidationError(
                 "Not enough tiles left in bag to perform exchange (only "
-                + len(new_tiles) + " are left).")
+                + str(len(new_tiles)) + " are left).")
         self.bag.add_tiles(move.tiles)
         self.active_player.pass_counter = 0  # reset consecutive passes
         self.active_player.rack.add_tiles(new_tiles)

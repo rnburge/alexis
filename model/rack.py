@@ -39,7 +39,7 @@ class Rack:
             tile = letter.lower()
             return tile
         else:
-            raise ValueError("No such letter in rack")
+            raise ValueError("No such letter as " + str(letter) + " in rack. Rack = " + str(self))
 
     def reset_blanks(self):
         for i in range(len(self)):

@@ -20,7 +20,7 @@ class AiPlayer(Player):
     """ represents a AI-controlled player """
 
     def __init__(self, game: GameController, gui: View, name: str):
-        """ Create a new game move """
+        """ Create a new AI player """
         self.game = game
         self.board = game.board
         super().__init__(game.bag, gui, name)
@@ -29,8 +29,13 @@ class AiPlayer(Player):
         # return self.get_move()
         # only need to consider one starting row (column would just be a transpose):
         row = deepcopy(self.board.get_row(8, Direction.HORIZONTAL))
+
+        self.rack.reset_blanks()
+        if '@' in self.rack:
+            self.rack.assign_blanks()
+        rack = deepcopy(self.rack)
         
-        possible_moves = self.play_on_square(row, 8, [None] * 16, self.rack)
+        possible_moves = self.play_on_square(row, 8, [None] * 16, rack)
 
         if '@' in self.rack:
             self.check_blank_permutations(possible_moves)
@@ -135,7 +140,6 @@ class AiPlayer(Player):
             moves[i].extend(self.play_on_square(row, hook, [None] * 16, rack))
 
     def best_move(self, potential_moves):
-        """ This returns whatever the AI considers the best move to be out of all the moves in the argument list """
 
         potential_moves.sort(key=lambda x: x.score, reverse=True)
         best_move = potential_moves[0] if potential_moves else Move(None, None, None)
